@@ -33,6 +33,7 @@ $(function() {
         };
         $.post("recruiter/signup", recruiter)
     })
-    
+
+
     
 })
