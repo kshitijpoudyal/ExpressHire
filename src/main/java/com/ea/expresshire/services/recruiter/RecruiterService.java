@@ -5,4 +5,6 @@ import com.ea.expresshire.model.Recruiter;
 public interface RecruiterService {
 
     public void addNewRecruiter(Recruiter recruiter);
+
+    public Recruiter findRecruiterById(long id);
 }
