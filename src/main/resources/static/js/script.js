@@ -17,10 +17,7 @@ $(function() {
             $("#signUp").load("jsp/recruiter_sign_up.jsp");
         }
     });
-    
-    
-    
-    
+
     
     $("#applicant_sign_up").click(function () {
         var applicant = {
