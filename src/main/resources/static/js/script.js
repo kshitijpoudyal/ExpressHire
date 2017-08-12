@@ -18,7 +18,7 @@ $(function() {
         }
     });
 
-    
+
     $("#applicant_sign_up").click(function () {
         var applicant = {
             firstName:$("#firstName").value(),

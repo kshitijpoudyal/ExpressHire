@@ -39,7 +39,7 @@
     </div>
 </nav>
 
-<section id="applicant" class="container" style="margin-top: 65px;">
+<section id="adminProfile" class="container" style="margin-top: 65px;">
     <h3 id="applicant-head">List of Applicants</h3>
     <c:forEach var="admin" items="${adminProfile}">
     <div class="row jumbotron">

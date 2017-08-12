@@ -23,5 +23,14 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/profile")
+    public String profileRoot() {
+        //userService.addNewUser(user);
+        return "userProfile";
+
+    }
+
+
+
 
 }

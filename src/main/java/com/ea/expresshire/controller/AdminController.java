@@ -2,6 +2,7 @@ package com.ea.expresshire.controller;
 
 import com.ea.expresshire.dao.AdminRepository;
 import com.ea.expresshire.model.Admin;
+import com.ea.expresshire.services.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminController {
     @Autowired
-    AdminRepository adminRepository;
+    AdminService adminService;
 
     @RequestMapping("/admin")
     public String adminRoot(){
@@ -24,7 +25,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/signup",method = RequestMethod.POST)
     public String adminSignup(@ModelAttribute("admin") Admin admin){
-        adminRepository.save(admin);
+        adminService.addAdmin(admin);
         return "redirect:/admin/recruiter";
     }
 
@@ -46,7 +47,7 @@ public class AdminController {
 
     @RequestMapping("/admin/profile")
     public String profile(Model model){
-        model.addAttribute("adminProfile", adminRepository.findAll());
+        model.addAttribute("adminProfile", adminService.getAdmin());
         return "adminProfile";
     }
 
