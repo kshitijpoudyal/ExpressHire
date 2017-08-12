@@ -29,6 +29,27 @@
         </form>
     </div>
 </nav>
+
+<div >
+    <nav class="nav">
+        <div class="container">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+                <ul class="nav nav-tabs">
+                    <li  id="applicant" class="nav-item active"><a class="nav-link active" href="#">Applicant</a></li>
+                    <li id="recruiter" ><a class="nav-link" href="#">Recruiter</a></li>
+                </ul>
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid --> </nav>
+
+    <div id="SignUp">
+
+    </div>
+</div>
+
 <section class="container">
    <div style="margin: 0 auto">
        <form>
@@ -52,6 +73,8 @@
        </form>
    </div>
 </section>
+
+
 
 <section class="container">
     Signup

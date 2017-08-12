@@ -36,8 +36,6 @@ public class User {
     @NotEmpty
     private String lastName;
 
-    @OneToOne(mappedBy = "user")
-    private Address address;
 
 
     public int getId() {
@@ -88,11 +86,4 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }
