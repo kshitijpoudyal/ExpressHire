@@ -22,7 +22,6 @@ public class AdminController {
     public String adminRoot(){
         return "admin";
     }
-
     @RequestMapping(value = "/admin/signup",method = RequestMethod.POST)
     public String adminSignup(@ModelAttribute("admin") Admin admin){
         adminService.addAdmin(admin);
