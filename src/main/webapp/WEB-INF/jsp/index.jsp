@@ -30,75 +30,83 @@
     </div>
 </nav>
 
-<div >
-    <nav class="nav">
-        <div class="container">
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-
-                <ul class="nav nav-tabs">
-                    <li  id="applicant" class="nav-item active"><a class="nav-link active" href="#">Applicant</a></li>
-                    <li id="recruiter" ><a class="nav-link" href="#">Recruiter</a></li>
-                </ul>
-
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid --> </nav>
-
-    <div id="SignUp">
-
-    </div>
-</div>
-
-<section class="container">
-   <div style="margin: 0 auto">
-       <form>
-           <div class="form-group row">
-               <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-               <div class="col-sm-10">
-                   <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-               </div>
-           </div>
-           <div class="form-group row">
-               <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-               <div class="col-sm-10">
-                   <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-               </div>
-           </div>
-           <div class="form-group row">
-               <div class="col-sm-10">
-                   <button type="submit" class="btn btn-primary">Sign in</button>
-               </div>
-           </div>
-       </form>
-   </div>
-</section>
-
-
-
-<section class="container">
-    Signup
-    <div style="margin: 0 auto">
+<div id="login">
+    <div class="container">
+        <h2 class="text-center">Login</h2>
         <form>
             <div class="form-group row">
-                <label for="inputEmail33" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail33" placeholder="Email">
+                <label for="firstName" class="col-sm-2">Email: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="login_email" placeholder="Email">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPassword33" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword33" placeholder="Password">
+                <label for="lastName" class="col-sm-2 col-form-label">Password: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="login_password" placeholder="Password">
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </div>
+            <div class="form-group">
+                <button id="login_btn" type="submit" class="btn btn-primary">Sign up</button>
             </div>
         </form>
+        <hr>
     </div>
-</section>
+</div>
+<h2 class="text-center">Sign UP</h2>
+<div id="#applicant_recruiter_option">
+    <nav class="nav">
+        <div class="container">
+                <ul class="nav nav-tabs">
+                    <li  class="nav-item"><a id="applicant" class="nav-link active myOption" href="#">Applicant</a></li>
+                    <li  class="nav-item"><a id="recruiter" class="nav-link myOption" href="#">Recruiter</a></li>
+                </ul>
+        </div>
+    </nav>
+
+    <br>
+
+    <div id="SignUpApplicant">
+        <div class="container">
+            <form>
+                <div class="form-group row">
+                    <label for="firstName" class="col-sm-2">First Name: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lastName" class="col-sm-2 col-form-label">Last Name: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lastName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button id="applicant_sign_up" type="submit" class="btn btn-primary">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="signUpRecruiter">
+
+        <div class="container">
+            <form>
+                <div class="form-group row">
+                    <label for="firstName" class="col-sm-2">Company Name: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="companyName" placeholder="Company Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button id="recruiter_sign_up" type="submit" class="btn btn-primary">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
 </body>
 </html>

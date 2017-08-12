@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class Applicant {
+public class Applicant implements Serializable{
 
     @Id
     @GeneratedValue
@@ -26,13 +27,38 @@ public class Applicant {
 //    @NotEmpty
 //    private String password;
 
-    @NotEmpty
+    //@NotEmpty
     private String firstName;
 
-    @NotEmpty
+    //@NotEmpty
     private String lastName;
 
     //TODO: Address. Now, no need for it.
 
 //    private boolean isActive; //TODO: if we have enough time, we will do it.
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
