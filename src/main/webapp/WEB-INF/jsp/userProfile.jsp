@@ -54,21 +54,18 @@
             </div>
         </div>
     </div>
-    <p>[Jobs Posted]</p>
-    <div class="list-group" style="width: 100%;">
-        <a class="list-group-item active" data-toggle="collapse"
-           data-target="#job" style="color: #fff;">
-            Job Title - Status
-        </a>
-        <span id="job" class="collapse">
+    <sec:authorize access="hasRole('APPLICANT')">
+        <section>
+            <p>[Jobs Posted]</p>
+            <div class="list-group" style="width: 100%;">
+                <a class="list-group-item active" data-toggle="collapse"
+                   data-target="#job" style="color: #fff;">
+                    Job Title - Status
+                </a>
+                <span id="job" class="collapse">
             <a class="list-group-item list-group-item-action">
                 <p>Job Description</p>
             </a>
-             <%--<a class="list-group-item list-group-item-action">--%>
-                <%--<div>--%>
-
-                <%--</div>--%>
-            <%--</a>--%>
             <a class="list-group-item list-group-item-action">
                     <form class="clearfix" style="width: 100%" action="/recruiter/job/reviewRating" method="POST">
                                     <input type="hidden" name="episode_id" value="applicantId"/>
@@ -80,19 +77,25 @@
                             </form>
             </a>
         </span>
-    </div>
-    <%--<p>[Jobs Applied]</p>--%>
-    <%--<div class="list-group" style="width: 100%;">--%>
-        <%--<a class="list-group-item active" data-toggle="collapse"--%>
-           <%--data-target="#job1" style="color: #fff;">--%>
-            <%--Job Title - Status--%>
-        <%--</a>--%>
-        <%--<span id="job1" class="collapse">--%>
-            <%--<a class="list-group-item list-group-item-action">--%>
-                <%--<p>Job Description</p>--%>
-            <%--</a>--%>
-        <%--</span>--%>
-    <%--</div>--%>
+            </div>
+        </section>
+    </sec:authorize>
+    <sec:authorize access="hasRole('APPLICANT')">
+        <section>
+            <p>[Jobs Applied]</p>
+            <div class="list-group" style="width: 100%;">
+                <a class="list-group-item active" data-toggle="collapse"
+                   data-target="#job1" style="color: #fff;">
+                    Job Title - Status
+                </a>
+                <span id="job1" class="collapse">
+            <a class="list-group-item list-group-item-action">
+            <p>Job Description</p>
+            </a>
+            </span>
+            </div>
+        </section>
+    </sec:authorize>
 </section>
 </body>
 </html>

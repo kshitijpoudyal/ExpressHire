@@ -24,13 +24,6 @@ public class JobController {
         this.jobService=jobService;
     }
 
-
-
-    @RequestMapping("/")
-    public String redirectRoot() {
-        return "index";
-    }
-
     @RequestMapping("/jobPost")
     public String jobPost() {
         return "postJob";
@@ -49,8 +42,4 @@ public class JobController {
         model.addAttribute("jobs", jobService.getJobs());
         return "jobList";
     }
-
-
-
-
 }

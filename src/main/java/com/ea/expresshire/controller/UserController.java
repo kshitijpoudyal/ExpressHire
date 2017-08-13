@@ -40,7 +40,7 @@ public class UserController {
     public String getRecruiter(@PathVariable("userId") long userId, Model model) {
         User user = userService.findUserById(userId);
 
-        if(user.getUserType() == UserType.RECRUITER) {
+        if(user.getUserType() == UserType.ROLE_RECRUITER) {
             //TODO: I have to check if the recruiter contains all attributes or not.
             // (I mean including the attributes inside the User class.
             Recruiter recruiter = recruiterService.findRecruiterById(userId);

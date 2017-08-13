@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
-
     @Id
     @GeneratedValue
     private long id;
@@ -20,6 +19,8 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    private Boolean enabled;
 
     //    private boolean isActive; //TODO: if we have enough time, we will do it.
 

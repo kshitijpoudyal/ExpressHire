@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 public class Recruiter extends User{
 
-
     @Column(name = "company_name")
     @NotEmpty
     private String companyName;

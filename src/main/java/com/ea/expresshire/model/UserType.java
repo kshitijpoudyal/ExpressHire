@@ -1,5 +1,5 @@
 package com.ea.expresshire.model;
 
 public enum UserType {
-    APPLICANT, RECRUITER
+    ROLE_APPLICANT, ROLE_RECRUITER, ROLE_ADMIN
 }

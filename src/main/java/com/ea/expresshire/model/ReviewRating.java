@@ -16,6 +16,8 @@ public class ReviewRating {
     private double rating;
     private String comment;
     private long recruiterId;
+    private long applicantId;
+
 
     public long getId() {
         return id;
@@ -47,5 +49,13 @@ public class ReviewRating {
 
     public void setRecruiterId(long recruiterId) {
         this.recruiterId = recruiterId;
+    }
+
+    public long getApplicantId() {
+        return applicantId;
+    }
+
+    public void setApplicantId(long applicantId) {
+        this.applicantId = applicantId;
     }
 }
