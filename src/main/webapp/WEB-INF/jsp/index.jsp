@@ -20,7 +20,7 @@
                 <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a id="profile" class="nav-link" href="#">Profile</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -51,6 +51,7 @@
             </div>
         </form>
         <hr>
+        <br>
     </div>
 </div>
 <h2 class="text-center">Sign UP</h2>
@@ -63,8 +64,6 @@
                 </ul>
         </div>
     </nav>
-
-    <br>
 
     <div id="SignUpApplicant">
         <div class="container">
@@ -79,6 +78,18 @@
                     <label for="lastName" class="col-sm-2 col-form-label">Last Name: </label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="lastName" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="firstName" class="col-sm-2">Email: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="applicant_email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="firstName" class="col-sm-2">Password: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="applicant_password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -96,6 +107,18 @@
                     <label for="firstName" class="col-sm-2">Company Name: </label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="companyName" placeholder="Company Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="firstName" class="col-sm-2">Email: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="recruiter_email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="firstName" class="col-sm-2">Password: </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="recruiter_password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
