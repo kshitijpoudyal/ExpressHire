@@ -19,7 +19,6 @@ public class ApplicantController {
 
     @Autowired
     private ApplicantService applicantService;
-
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     //TODO: put @Valid.
     public void signUpPost(@RequestBody Applicant applicant) {
