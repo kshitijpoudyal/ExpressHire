@@ -7,6 +7,8 @@ public interface ApplicantService {
     public void addNewApplicant(Applicant applicant);
 
     public Applicant findApplicantById(long id);
+
+    public void updateApplicant(Applicant applicant);
 }
 
 

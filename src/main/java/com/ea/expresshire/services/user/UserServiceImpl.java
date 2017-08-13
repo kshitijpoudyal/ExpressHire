@@ -1,6 +1,7 @@
 package com.ea.expresshire.services.user;
 
 import com.ea.expresshire.dao.UserRepository;
+import com.ea.expresshire.exception.UserNotFoundException;
 import com.ea.expresshire.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findUserById(long id) {
+    public User findUserById(long id) throws UserNotFoundException{
         Optional<User> optional = userRepository.findById(id);
-        return optional.get();
+        if(optional.isPresent()) {
+            return optional.get();
+        }
+        else {
+            throw new UserNotFoundException("User is not found");
+        }
+
     }
 }
