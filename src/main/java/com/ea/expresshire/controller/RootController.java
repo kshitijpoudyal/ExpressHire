@@ -30,7 +30,7 @@ public class RootController {
         }else if(request.isUserInRole(UserType.ROLE_APPLICANT.name())){
             return "userProfile";
         }else{
-            return null;
+            return "redirect:/jobPost";
         }
     }
 

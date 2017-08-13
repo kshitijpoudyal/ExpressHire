@@ -80,22 +80,22 @@
             </div>
         </section>
     </sec:authorize>
-    <sec:authorize access="hasRole('APPLICANT')">
-        <section>
-            <p>[Jobs Applied]</p>
-            <div class="list-group" style="width: 100%;">
-                <a class="list-group-item active" data-toggle="collapse"
-                   data-target="#job1" style="color: #fff;">
-                    Job Title - Status
-                </a>
-                <span id="job1" class="collapse">
-            <a class="list-group-item list-group-item-action">
-            <p>Job Description</p>
-            </a>
-            </span>
-            </div>
-        </section>
-    </sec:authorize>
+    <%--<sec:authorize access="hasRole('APPLICANT')">--%>
+        <%--<section>--%>
+            <%--<p>[Jobs Applied]</p>--%>
+            <%--<div class="list-group" style="width: 100%;">--%>
+                <%--<a class="list-group-item active" data-toggle="collapse"--%>
+                   <%--data-target="#job1" style="color: #fff;">--%>
+                    <%--Job Title - Status--%>
+                <%--</a>--%>
+                <%--<span id="job1" class="collapse">--%>
+            <%--<a class="list-group-item list-group-item-action">--%>
+            <%--<p>Job Description</p>--%>
+            <%--</a>--%>
+            <%--</span>--%>
+            <%--</div>--%>
+        <%--</section>--%>
+    <%--</sec:authorize>--%>
 </section>
 </body>
 </html>
