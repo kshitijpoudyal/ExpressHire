@@ -28,14 +28,6 @@ public class RecruiterController {
         recruiterService.addNewRecruiter(recruiter);
     }
 
-    @RequestMapping(value = "/{recruiterId}", method = RequestMethod.GET)
-    //TODO: put @Valid.
-    public String getRecruiter(@PathVariable ("recruiterId") long recruiterId, Model model) {
-        Recruiter recruiter = recruiterService.findRecruiterById(recruiterId);
-        model.addAttribute("recruiter", recruiter);
-        return "profile";
-    }
-
     @RequestMapping(value = "/{recruiterId}", method = RequestMethod.PUT)
     //TODO: put @Valid.
     public void updateRecruiter(@PathVariable ("recruiterId") long recruiterId, Model model) {

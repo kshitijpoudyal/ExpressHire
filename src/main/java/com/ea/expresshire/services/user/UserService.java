@@ -11,4 +11,6 @@ public interface UserService {
      * @return user id
      */
     public void addNewUser(User user);
+
+    public User findUserById(long id);
 }
