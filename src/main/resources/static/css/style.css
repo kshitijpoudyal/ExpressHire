@@ -1,0 +1,30 @@
+/* css for job post page*/
+.right {
+    width: 49%;
+    float: right;
+}
+.left {
+    width: 49%;
+    float: left;
+}
+.header-top{
+    background-image: url(../img/jobPost-header.jpg);
+    height: 360.2px;
+    width: 100%;
+    transform: translate3d(0px, -1px, 0px);
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 30px;
+
+}
+
+.header-top nav {
+    background: rgba(255, 255, 255, 0.53);
+}
+
+.header-top .navbar {
+    position: relative;
+    top: 32px;
+}
+
+
