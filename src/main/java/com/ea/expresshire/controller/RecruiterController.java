@@ -2,6 +2,7 @@ package com.ea.expresshire.controller;
 
 import com.ea.expresshire.model.Applicant;
 import com.ea.expresshire.model.Recruiter;
+import com.ea.expresshire.model.UserType;
 import com.ea.expresshire.services.recruiter.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,15 +26,8 @@ public class RecruiterController {
     //TODO: put @Valid.
     public void signUpPost(@RequestBody Recruiter recruiter) {
         //TODO: in the service layer, I have to check if the user is already exist or not.
+        recruiter.setUserType(UserType.RECRUITER);
         recruiterService.addNewRecruiter(recruiter);
-    }
-
-    @RequestMapping(value = "/{recruiterId}", method = RequestMethod.GET)
-    //TODO: put @Valid.
-    public String getRecruiter(@PathVariable ("recruiterId") long recruiterId, Model model) {
-        Recruiter recruiter = recruiterService.findRecruiterById(recruiterId);
-        model.addAttribute("recruiter", recruiter);
-        return "profile";
     }
 
     @RequestMapping(value = "/{recruiterId}", method = RequestMethod.PUT)

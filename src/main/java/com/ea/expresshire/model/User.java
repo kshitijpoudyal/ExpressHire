@@ -1,57 +1,35 @@
 package com.ea.expresshire.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-/**
- * Created by kcp on 8/10/17.
- */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
-    //user name must be unique. We should handle this in the front end also. I'll search about this.
-    @NotEmpty
-    private String userName;
-
-    @NotEmpty
-    @Email
+//    @NotEmpty
+//    @Email
     private String email;
 
-    @NotEmpty
+    //    @NotEmpty
     private String password;
 
-    @NotEmpty
-    private String firstName;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
-    @NotEmpty
-    private String lastName;
+    private Boolean enabled;
 
+    //    private boolean isActive; //TODO: if we have enough time, we will do it.
 
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
@@ -70,20 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
 }

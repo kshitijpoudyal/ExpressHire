@@ -49,7 +49,6 @@
                     <input type="submit" class="btn btn-lg btn-primary btn-block" value="Add New Artist"/>
                 </div>
 
-
             </div>
 
         </div>
