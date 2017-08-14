@@ -1,9 +1,7 @@
 package com.ea.expresshire.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by kcp on 8/10/17.
@@ -21,6 +19,42 @@ public class Job {
     public String description;
     public String hourlyRate;
     public String duration;
+    @ManyToMany(mappedBy = "appliedJobs")
+    private List<Applicant> applicants;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Applicant approvedApplicant;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private ReviewRating reviewRating;
+
+    public ReviewRating getReviewRating() {
+        return reviewRating;
+    }
+
+    public void setReviewRating(ReviewRating reviewRating) {
+        this.reviewRating = reviewRating;
+    }
+
+    public Applicant getApprovedApplicant() {
+        return approvedApplicant;
+    }
+
+    public void setApprovedApplicant(Applicant approvedApplicant) {
+        this.approvedApplicant = approvedApplicant;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public List<Applicant> getApplicants() {
+        return applicants;
+    }
+
+    public void setApplicants(List<Applicant> applicants) {
+        this.applicants = applicants;
+    }
 
     public void setId(long id) {this.id = id;}
 
