@@ -9,4 +9,6 @@ public interface RecruiterService {
     public Recruiter findRecruiterById(long id);
 
     public void updateRecruiter(Recruiter recruiter);
+
+    Recruiter getRecruiterByEmail(String email);
 }
