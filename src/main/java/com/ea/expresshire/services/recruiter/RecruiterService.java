@@ -11,4 +11,5 @@ public interface RecruiterService {
     public void updateRecruiter(Recruiter recruiter);
 
     Recruiter getRecruiterByEmail(String email);
+
 }

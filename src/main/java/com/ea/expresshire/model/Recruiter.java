@@ -3,6 +3,7 @@ package com.ea.expresshire.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Recruiter extends User{
@@ -11,6 +12,18 @@ public class Recruiter extends User{
     @NotEmpty
     private String companyName;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Job> postedJobs;
+
+    public List<Job> getPostedJobs() {
+        return postedJobs;
+    }
+
+
+
+    public void setPostedJobs(List<Job> postedJobs) {
+        this.postedJobs = postedJobs;
+    }
 
     public String getCompanyName() {
         return companyName;

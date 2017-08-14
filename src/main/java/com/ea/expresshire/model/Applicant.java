@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Applicant extends User{
@@ -13,6 +14,9 @@ public class Applicant extends User{
 
     //@NotEmpty
     private String lastName;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Job> appliedJobs;
 
     //TODO: Address. Now, no need for it.
 
@@ -31,5 +35,13 @@ public class Applicant extends User{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Job> getAppliedJobs() {
+        return appliedJobs;
+    }
+
+    public void setAppliedJobs(List<Job> appliedJobs) {
+        this.appliedJobs = appliedJobs;
     }
 }
