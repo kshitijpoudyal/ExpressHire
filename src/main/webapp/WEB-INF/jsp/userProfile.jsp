@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <sec:authorize access="hasRole('APPLICANT')">
+    <%--<sec:authorize access="hasRole('APPLICANT')">--%>
         <section>
             <p>[Jobs Posted]</p>
             <div class="list-group" style="width: 100%;">
@@ -79,7 +79,7 @@
         </span>
             </div>
         </section>
-    </sec:authorize>
+    <%--</sec:authorize>--%>
     <%--<sec:authorize access="hasRole('APPLICANT')">--%>
         <%--<section>--%>
             <%--<p>[Jobs Applied]</p>--%>

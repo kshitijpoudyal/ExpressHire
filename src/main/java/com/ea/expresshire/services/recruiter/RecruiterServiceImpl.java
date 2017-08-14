@@ -48,4 +48,9 @@ public class RecruiterServiceImpl implements RecruiterService {
 
         recruiterRepository.save(currentRecruiter);
     }
+
+    @Override
+    public Recruiter getRecruiterByEmail(String email) {
+        return recruiterRepository.findByEmail(email);
+    }
 }
