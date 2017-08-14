@@ -21,7 +21,25 @@ $(function() {
         }
     });
 
+    $("#applicant_profile_nav").show();
+    $("#update_applicant_profile_nav").hide();
 
+    $(".profile_update_option").click(function() {
+        // remove classes from all
+        $(".profile_update_option").removeClass("active");//I'll change it, because we have many a inside the index page.
+        // add class to the one we clicked
+        $(this).addClass("active");
+
+        if(this.id === "profile_option") {
+            $("#applicant_profile_nav").show();
+            $("#update_applicant_profile_nav").hide();
+        }
+        else {
+            $("#applicant_profile_nav").hide();
+            $("#update_applicant_profile_nav").show();
+        }
+    });
+  
     $("#applicant_sign_up").click(function () {
         let applicant = {
             firstName:$("#firstName").val(),
@@ -93,4 +111,11 @@ $(function() {
                 display(e);
             })
     })
+
+    //profile_update_option
+    //applicant_update_btn
+    $("#applicant_update_btn").click(function () {
+        //TODO: I have to send a put request to "applicant/{userId}, put mean update.
+    })
+
 })

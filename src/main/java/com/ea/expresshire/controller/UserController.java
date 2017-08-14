@@ -1,5 +1,6 @@
 package com.ea.expresshire.controller;
 
+import com.ea.expresshire.exception.UserNotFoundException;
 import com.ea.expresshire.model.Applicant;
 import com.ea.expresshire.model.Recruiter;
 import com.ea.expresshire.model.User;
@@ -37,7 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     //TODO: put @Valid.
-    public String getRecruiter(@PathVariable("userId") long userId, Model model) {
+    public String getUser(@PathVariable("userId") long userId, Model model) throws UserNotFoundException{
         User user = userService.findUserById(userId);
 
         if(user.getUserType() == UserType.ROLE_RECRUITER) {
