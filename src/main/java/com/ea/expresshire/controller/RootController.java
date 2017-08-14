@@ -35,9 +35,10 @@ public class RootController {
         if(request.isUserInRole(UserType.ROLE_ADMIN.name())){
             return "redirect:/admin";
         }else if(request.isUserInRole(UserType.ROLE_APPLICANT.name())){
-            return "userProfile";
+            System.out.println("afterlogin applicant");
+            return "redirect:/applicant";
         }else{
-            return "redirect:/jobPost";
+            return "redirect:/recruiter";
         }
     }
 

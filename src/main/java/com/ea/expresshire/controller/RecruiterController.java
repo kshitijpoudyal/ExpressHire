@@ -38,12 +38,9 @@ public class RecruiterController {
 
     }
     @PreAuthorize("hasRole('ROLE_RECRUITER')")
-    @RequestMapping("/profile")
+    @RequestMapping("")
     public String profile(Model model, Principal principal){
         model.addAttribute("recruiterProfile", recruiterService.getRecruiterByEmail(principal.getName()));
-//        model.addAttribute("applicantList", applicantRepository.findAll());
-//        model.addAttribute("recruiterList", recruiterRepository.findAll());
         return "recruiter";
     }
-
 }
