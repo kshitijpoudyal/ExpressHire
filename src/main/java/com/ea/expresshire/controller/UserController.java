@@ -40,7 +40,7 @@ public class UserController {
     //TODO: put @Valid.
     public String getUser(@PathVariable("userId") long userId, Model model) throws UserNotFoundException{
         User user = userService.findUserById(userId);
-
+        //TODO: we can get the id using pricipal object. (it is email).
         if(user.getUserType() == UserType.ROLE_RECRUITER) {
             //TODO: I have to check if the recruiter contains all attributes or not.
             // (I mean including the attributes inside the User class.
