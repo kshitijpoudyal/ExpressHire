@@ -1,6 +1,8 @@
 package com.ea.expresshire.controller;
 
 import com.ea.expresshire.model.UserType;
+import com.ea.expresshire.services.email.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
@@ -13,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class RootController {
+
+//    @Autowired
+//    EmailService emailService;
+
     @RequestMapping("/")
     public String redirectRoot() {
+        //emailService.sendEmail("Text Message", "mohammed.ahmed.ps@gmail.com", "Test Email");
         return "index";
     }
 

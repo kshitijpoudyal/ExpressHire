@@ -101,15 +101,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="firstName" class="col-sm-2">Email: </label>
+                        <label for="applicant_sign_up_email" class="col-sm-2">Email: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="applicant_email" placeholder="Email">
+                            <input type="text" class="form-control" id="applicant_sign_up_email" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="firstName" class="col-sm-2">Password: </label>
+                        <label for="applicant_sign_up_password" class="col-sm-2">Password: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="applicant_password" placeholder="Password">
+                            <input type="text" class="form-control" id="applicant_sign_up_password" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group">
@@ -124,21 +124,21 @@
             <div class="container">
                 <form>
                     <div class="form-group row">
-                        <label for="firstName" class="col-sm-2">Company Name: </label>
+                        <label for="companyName" class="col-sm-2">Company Name: </label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="companyName" placeholder="Company Name">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="firstName" class="col-sm-2">Email: </label>
+                        <label for="recruiter_sign_up_email" class="col-sm-2">Email: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="recruiter_email" placeholder="Email">
+                            <input type="text" class="form-control" id="recruiter_sign_up_email" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="firstName" class="col-sm-2">Password: </label>
+                        <label for="recruiter_sign_up_password" class="col-sm-2">Password: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="recruiter_password" placeholder="Password">
+                            <input type="text" class="form-control" id="recruiter_sign_up_password" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group">

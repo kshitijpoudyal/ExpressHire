@@ -43,7 +43,9 @@ $(function() {
     $("#applicant_sign_up").click(function () {
         let applicant = {
             firstName:$("#firstName").val(),
-            lastName: $("#lastName").val()
+            lastName: $("#lastName").val(),
+            email: $("#applicant_sign_up_email").val(),
+            password: $("#applicant_sign_up_password").val()
         };
 
         console.log(JSON.stringify(applicant));
@@ -71,10 +73,12 @@ $(function() {
 
     $("#recruiter_sign_up").click(function () {
         let recruiter = {
-            firstName:$("#companyName").val(),
+            companyName:$("#companyName").val(),
+            email: $("#recruiter_sign_up_email").val(),
+            password: $("#recruiter_sign_up_password").val()
         };
 
-        console.log(JSON.stringify(applicant));
+        console.log(JSON.stringify(recruiter));
 
         $.ajax({
             type : "POST",
@@ -97,20 +101,7 @@ $(function() {
         });
     });
 
-    $("#recruiter_sign_up").click(function () {
-        var recruiter = {
-            companyName: $("#companyName").value()
-        };
-        $.post("recruiter/signup", recruiter)
-            .done(function (e) {
-                console.log("DONE");
 
-            })
-            .fail(function (e) {
-                console.log("ERROR: ", e);
-                display(e);
-            })
-    })
 
     //profile_update_option
     //applicant_update_btn
