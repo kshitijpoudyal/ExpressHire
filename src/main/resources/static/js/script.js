@@ -39,8 +39,7 @@ $(function() {
             $("#update_applicant_profile_nav").show();
         }
     });
-
-
+  
     $("#applicant_sign_up").click(function () {
         let applicant = {
             firstName:$("#firstName").val(),
