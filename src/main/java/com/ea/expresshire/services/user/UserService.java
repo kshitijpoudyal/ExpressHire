@@ -1,5 +1,6 @@
 package com.ea.expresshire.services.user;
 
+import com.ea.expresshire.exception.UserNotFoundException;
 import com.ea.expresshire.model.User;
 
 public interface UserService {
@@ -12,5 +13,5 @@ public interface UserService {
      */
     public void addNewUser(User user);
 
-    public User findUserById(long id);
+    public User findUserById(long id) throws UserNotFoundException;
 }
