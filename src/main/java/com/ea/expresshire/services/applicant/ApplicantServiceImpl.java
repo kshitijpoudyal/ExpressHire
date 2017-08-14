@@ -53,4 +53,9 @@ public class ApplicantServiceImpl implements ApplicantService{
 
         applicantRepository.save(currentApplicant);
     }
+
+    @Override
+    public Applicant getApplicantByEmail(String email) {
+        return applicantRepository.findByEmail(email);
+    }
 }

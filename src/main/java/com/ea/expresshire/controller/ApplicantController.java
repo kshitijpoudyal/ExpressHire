@@ -5,6 +5,7 @@ import com.ea.expresshire.model.UserType;
 import com.ea.expresshire.services.applicant.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/applicant")
@@ -36,5 +38,14 @@ public class ApplicantController {
         //TODO: I have to receive the id of that applicant. ==> no need, I can get it from current user(session).
         //if the password is empty, I should not update it.
 
+    }
+
+    @PreAuthorize("hasRole('ROLE_APPLICANT')")
+    @RequestMapping("")
+    public String profile(Model model, Principal principal){
+        System.out.println("in applicant controller");
+        model.addAttribute("applicant", applicantService.getApplicantByEmail(principal.getName()));
+        System.out.println(applicantService.getApplicantByEmail(principal.getName()));
+        return "applicant";
     }
 }
