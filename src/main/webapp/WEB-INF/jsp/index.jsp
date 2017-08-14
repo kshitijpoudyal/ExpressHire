@@ -48,20 +48,20 @@
             <%--</form>--%>
         <%--</div>--%>
     <%--</div>--%>
-        <div id="login">
+        <div>
             <div class="container">
                 <h2 class="text-center">Login</h2>
-                <form>
+                <form method="post" action="/login">
                     <div class="form-group row">
                         <label for="firstName" class="col-sm-2">Email: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="login_email" placeholder="Email">
+                            <input type="email" class="form-control" id="login_email" name="username" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="lastName" class="col-sm-2 col-form-label">Password: </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="login_password" placeholder="Password">
+                            <input type="password" class="form-control" name="password" id="login_password" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group">

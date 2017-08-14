@@ -26,7 +26,7 @@ public class ApplicantController {
     public void signUpPost(@RequestBody Applicant applicant) {
         System.out.println(applicant);
         //TODO: in the service layer, I have to check if the user is already exist or not.
-        applicant.setUserType(UserType.APPLICANT);
+        applicant.setUserType(UserType.ROLE_APPLICANT);
         applicantService.addNewApplicant(applicant);
     }
 

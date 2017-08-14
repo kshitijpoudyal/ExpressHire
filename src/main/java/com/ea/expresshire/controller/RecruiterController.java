@@ -26,7 +26,7 @@ public class RecruiterController {
     //TODO: put @Valid.
     public void signUpPost(@RequestBody Recruiter recruiter) {
         //TODO: in the service layer, I have to check if the user is already exist or not.
-        recruiter.setUserType(UserType.RECRUITER);
+        recruiter.setUserType(UserType.ROLE_RECRUITER);
         recruiterService.addNewRecruiter(recruiter);
     }
 
