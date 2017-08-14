@@ -37,8 +37,6 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/public/**").permitAll()
-//                .anyRequest().hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/").loginProcessingUrl("/login").defaultSuccessUrl("/afterLogin",true).usernameParameter("username").passwordParameter("password").permitAll()
                 .and().csrf().disable();

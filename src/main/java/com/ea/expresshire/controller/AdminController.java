@@ -42,8 +42,8 @@ public class AdminController {
     @RequestMapping("/admin")
     public String profile(Model model, Principal principal){
         model.addAttribute("adminProfile", adminService.getAdminByEmail(principal.getName()));
-        model.addAttribute("applicantList", applicantRepository.findAll());
-        model.addAttribute("recruiterList", recruiterRepository.findAll());
+//        model.addAttribute("applicantList", applicantRepository.findAll());
+//        model.addAttribute("recruiterList", recruiterRepository.findAll());
         return "admin";
     }
 
