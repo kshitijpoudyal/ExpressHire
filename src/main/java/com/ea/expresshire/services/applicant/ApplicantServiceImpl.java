@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -59,4 +60,16 @@ public class ApplicantServiceImpl implements ApplicantService{
     public Applicant getApplicantByEmail(String email) {
         return applicantRepository.findByEmail(email);
     }
+
+    @Override
+    public List<Applicant> findApplicants() {
+        return applicantRepository.findAll();
+    }
+
+    @Override
+    public void deleteApplicant(Applicant applicant) {
+        applicantRepository.delete(applicant);
+    }
+
+
 }

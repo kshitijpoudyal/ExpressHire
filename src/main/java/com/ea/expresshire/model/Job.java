@@ -22,7 +22,7 @@ public class Job {
     @ManyToMany(mappedBy = "appliedJobs")
     private List<Applicant> applicants;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Applicant approvedApplicant;
 
     @OneToOne(cascade = CascadeType.ALL)

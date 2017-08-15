@@ -27,9 +27,9 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            <form method="post" action="/searchJob" class="form-inline my-2 my-lg-0">
+                <input name="key" class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="btn btn-success my-2 my-sm-0" type="submit" value="Search"/>
             </form>
             <button form="logout" type="submit" class="btn btn-success btn-link">Logout</button>
         </div>
@@ -40,30 +40,8 @@
 </div>
 
 <section id="userProfile" class="container" style="margin-top: 65px;">
-    <%--<div class="row jumbotron">--%>
-    <%--<header class="col-2">--%>
-    <%--<img class="rounded" src="http://lorempixel.com/150/150">--%>
-    <%--</header>--%>
-    <%--<div class="col-10">--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">User Name</p>--%>
-    <%--<p class="col-sm-10">[userName]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Full Name</p>--%>
-    <%--<p class="col-sm-10">[firstName] [lastName]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Email</p>--%>
-    <%--<p class="col-sm-10">[email]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Average Rating</p>--%>
-    <%--<p class="col-sm-10">[averateRating]</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
+    <p>applicant profile here</p>
+  
         <div>
             <nav class="nav">
                 <div class="container">

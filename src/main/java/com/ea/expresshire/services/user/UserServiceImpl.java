@@ -3,6 +3,7 @@ package com.ea.expresshire.services.user;
 import com.ea.expresshire.dao.UserRepository;
 import com.ea.expresshire.exception.UserNotAuthenticatedException;
 import com.ea.expresshire.exception.UserNotFoundException;
+import com.ea.expresshire.model.Applicant;
 import com.ea.expresshire.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteUser(Applicant applicant) {
+        userRepository.delete(applicant);
     public User findUserByEmail(String email) throws UserNotFoundException {
         Optional<User> optional = userRepository.findByEmail(email);
         if(optional.isPresent()) {

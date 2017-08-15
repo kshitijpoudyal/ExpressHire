@@ -15,6 +15,16 @@ public class Recruiter extends User{
     @OneToMany(cascade = CascadeType.ALL)
     private List<Job> postedJobs;
 
+    private int averageRating;
+
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
+    }
+
     public List<Job> getPostedJobs() {
         return postedJobs;
     }

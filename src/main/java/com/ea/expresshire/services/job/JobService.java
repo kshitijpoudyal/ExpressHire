@@ -3,6 +3,7 @@ package com.ea.expresshire.services.job;
 import com.ea.expresshire.dao.JobRepository;
 import com.ea.expresshire.model.Job;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * Created by kcp on 8/10/17.
  */
 @Service
-public class JobService {
+public class JobService{
 
     @Autowired
     private JobRepository jobRepository;
@@ -30,5 +31,9 @@ public class JobService {
 
     public Job getJob(long id){
         return jobRepository.getOne(id);
+    }
+
+    public Job searchJob(String key){
+        return jobRepository.findJobByTitle(key);
     }
 }

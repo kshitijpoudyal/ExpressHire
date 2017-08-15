@@ -1,8 +1,8 @@
 $(function() {
 
-
     $("#SignUpApplicant").show();
     $("#signUpRecruiter").hide();
+    $("#signUpAdmin").hide();
 
 
     $(".myOption").click(function() {
@@ -12,12 +12,18 @@ $(function() {
         $(this).addClass("active");
 
         if(this.id === "applicant") {
+            $("#signUpAdmin").hide();
             $("#SignUpApplicant").show();
             $("#signUpRecruiter").hide();
         }
-        else {
+        else if(this.id === "recruiter") {
+            $("#signUpAdmin").hide();
             $("#SignUpApplicant").hide();
             $("#signUpRecruiter").show();
+        }else{
+            $("#signUpAdmin").show();
+            $("#SignUpApplicant").hide();
+            $("#signUpRecruiter").hide();
         }
     });
 
