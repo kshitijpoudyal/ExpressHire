@@ -28,11 +28,12 @@ public class ApplicantController {
     private ApplicantService applicantService;
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     //TODO: put @Valid.
-    public void signUpPost(@RequestBody Applicant applicant) {
+    public String signUpPost(@RequestBody Applicant applicant) {
         System.out.println(applicant);
         //TODO: in the service layer, I have to check if the user is already exist or not.
         applicant.setUserType(UserType.ROLE_APPLICANT);
         applicantService.addNewApplicant(applicant);
+        return "redirect:/applicant";
     }
 
 

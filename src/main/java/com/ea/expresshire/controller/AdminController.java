@@ -54,8 +54,8 @@ public class AdminController {
         return "admin";
     }
 
-    @RequestMapping(value = "/admin/deleteApplicant",method = RequestMethod.POST)
-    public String deleteUser(@ModelAttribute("admin") Admin admin){
+    @RequestMapping(value = "/admin/signup",method = RequestMethod.POST)
+    public String addAdmin(@ModelAttribute("admin") Admin admin){
         admin.setUserType(UserType.ROLE_ADMIN);
         adminService.addAdmin(admin);
         return "redirect:/admin";
@@ -63,6 +63,14 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/blackListApplicant",method = RequestMethod.POST)
     public String blackListUser(long applicant_id) throws UserNotFoundException {
+//        Applicant applicant = applicantService.findApplicantById(applicant_id);
+//        applicantService.deleteApplicant(applicant);
+//        userService.deleteUser(applicant);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/deleteApplicant",method = RequestMethod.POST)
+    public String deleteUser(long applicant_id) throws UserNotFoundException {
         Applicant applicant = applicantService.findApplicantById(applicant_id);
         applicantService.deleteApplicant(applicant);
         userService.deleteUser(applicant);
