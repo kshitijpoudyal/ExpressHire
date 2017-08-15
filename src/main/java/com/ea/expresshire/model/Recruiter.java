@@ -12,6 +12,8 @@ public class Recruiter extends User{
     @NotEmpty
     private String companyName;
 
+    private String name;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Job> postedJobs;
 
@@ -29,7 +31,13 @@ public class Recruiter extends User{
         return postedJobs;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setPostedJobs(List<Job> postedJobs) {
         this.postedJobs = postedJobs;
