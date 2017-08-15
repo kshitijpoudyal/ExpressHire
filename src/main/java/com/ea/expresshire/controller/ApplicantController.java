@@ -35,11 +35,16 @@ public class ApplicantController {
         applicantService.addNewApplicant(applicant);
     }
 
-    @RequestMapping(value = "/{recruiterId}", method = RequestMethod.PUT)
+
+    @PreAuthorize("hasRole('ROLE_APPLICANT')")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     //TODO: put @Valid.
-    public void updateApplicant(@RequestBody Applicant applicant) {
+    //TODO: receive a principal object, then get the email from there.
+    public void updateApplicant(@RequestBody Applicant applicant, Principal principal) {
         //TODO: I have to receive the id of that applicant. ==> no need, I can get it from current user(session).
         //if the password is empty, I should not update it.
+
+        applicantService.updateApplicant(applicant, principal);
 
     }
 

@@ -41,45 +41,66 @@
 
 </div>
 <section id="userProfile" class="container">
-    <%--<div class="row jumbotron">--%>
-    <%--<header class="col-2">--%>
-    <%--<img class="rounded" src="http://lorempixel.com/150/150">--%>
-    <%--</header>--%>
-    <%--<div class="col-10">--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">User Name</p>--%>
-    <%--<p class="col-sm-10">[userName]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Full Name</p>--%>
-    <%--<p class="col-sm-10">[firstName] [lastName]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Email</p>--%>
-    <%--<p class="col-sm-10">[email]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Average Rating</p>--%>
-    <%--<p class="col-sm-10">[averateRating]</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
     <p>recruiter profile</p>
+        <div>
+            <nav class="nav">
+                <div class="container">
+                    <ul class="nav nav-tabs">
+                        <li  class="nav-item"><a id="profile_option" class="nav-link active profile_update_option" href="#">Profile</a></li>
+                        <li  class="nav-item"><a id="update_profile_option" class="nav-link profile_update_option" href="#">Update Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
 
-    <%--<div id="loginSingUpContainer">--%>
-    <%--<div id="profileContainer" class="container well">--%>
-    <%--<legend> My Profile Information </legend>--%>
-    <%--<form action="update" method="post">--%>
-    <%--<div class="form-group">--%>
-    <%--<label for="firstName">Company Name:</label> <input type="text"--%>
-    <%--class="form-control" id="firstName" placeholder="First Name"--%>
-    <%--name="firstName" required value="${recruiter.companyName }">--%>
-    <%--</div>--%>
-    <%--<button id="updateProfile" class="btn btn-lg btn-primary btn-block" type="submit">Update</button>--%>
-    <%--</form>--%>
-    <%--</div>--%>
-    <%--</div>--%>
+            <section id="profile_nav" class="container" style="margin-top: 65px;">
+                <div class="row jumbotron">
+                    <header class="col-2">
+                        <img class="rounded" src="http://lorempixel.com/150/150">
+                    </header>
+                    <div class="col-10">
+                        <div class="row">
+                            <p class="col-sm-2">Company Name: </p>
+                            <p class="col-sm-10">${recruiter.companyName}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-sm-2">Email</p>
+                            <p class="col-sm-10">${recruiter.email}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="update_profile_nav">
+                <div class="container">
+                    <form>
+                        <div class="form-group row">
+                            <label for="companyName" class="col-sm-2">Company Name: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="companyName"
+                                       value="${recruiter.companyName}" placeholder="Company Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="recruiter_email" class="col-sm-2">Email: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="recruiter_email"
+                                       value="${recruiter.email}" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="recruiter_password" class="col-sm-2">Password: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="recruiter_password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="recruiter_update_btn" type="submit" class="btn btn-primary">Update Info</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 </section>
 
 <section class="container" id="jobPost" style="display: none">

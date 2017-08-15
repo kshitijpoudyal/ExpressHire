@@ -1,5 +1,6 @@
 package com.ea.expresshire.controller;
 
+import com.ea.expresshire.exception.UserNotAuthenticatedException;
 import com.ea.expresshire.exception.UserNotFoundException;
 import com.ea.expresshire.model.Applicant;
 import com.ea.expresshire.model.Recruiter;
@@ -32,7 +33,10 @@ public class UserController {
     ApplicantService applicantService;
 
     @RequestMapping(value = "/login")
-    public void login(@RequestBody @Valid User user) {
+    public void login(@RequestBody @Valid User user) throws UserNotFoundException, UserNotAuthenticatedException{
+
+        userService.login(user);
+        //now, we are sure that user is authenticated, so we need to add something in the session.
 
     }
 

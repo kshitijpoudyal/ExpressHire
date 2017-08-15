@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.sql.DataSource;
 
 /**
- * Created by eessc on 8/12/2017.
+ * Created by Kshitij on 8/12/2017.
  */
 @Configuration
 @EnableWebSecurity

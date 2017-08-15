@@ -19,6 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <%--How will we handle this?--%>
                     <a class="nav-link active" id="userProfileLink" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
@@ -39,30 +40,79 @@
 </div>
 
 <section id="userProfile" class="container" style="margin-top: 65px;">
-    <%--<div class="row jumbotron">--%>
-    <%--<header class="col-2">--%>
-    <%--<img class="rounded" src="http://lorempixel.com/150/150">--%>
-    <%--</header>--%>
-    <%--<div class="col-10">--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">User Name</p>--%>
-    <%--<p class="col-sm-10">[userName]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Full Name</p>--%>
-    <%--<p class="col-sm-10">[firstName] [lastName]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Email</p>--%>
-    <%--<p class="col-sm-10">[email]</p>--%>
-    <%--</div>--%>
-    <%--<div class="row">--%>
-    <%--<p class="col-sm-2">Average Rating</p>--%>
-    <%--<p class="col-sm-10">[averateRating]</p>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
     <p>applicant profile here</p>
+  
+        <div>
+            <nav class="nav">
+                <div class="container">
+                    <ul class="nav nav-tabs">
+                        <li  class="nav-item"><a id="profile_option" class="nav-link active profile_update_option" href="#">Profile</a></li>
+                        <li  class="nav-item"><a id="update_profile_option" class="nav-link profile_update_option" href="#">Update Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <section id="profile_nav" class="container" style="margin-top: 65px;">
+                <div class="row jumbotron">
+                    <header class="col-2">
+                        <img class="rounded" src="http://lorempixel.com/150/150">
+                    </header>
+                    <div class="col-10">
+                        <div class="row">
+                            <p class="col-sm-2">FirstName: </p>
+                            <p class="col-sm-10">${applicant.firstName}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-sm-2">Last Name: </p>
+                            <p class="col-sm-10">${applicant.lastName}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-sm-2">Email</p>
+                            <p class="col-sm-10">${applicant.email}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="update_profile_nav">
+                <div class="container">
+                    <form>
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-2">First Name: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="firstName"
+                                       value="${applicant.firstName}" placeholder="First Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-sm-2 col-form-label">Last Name: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="lastName"
+                                       value="${applicant.lastName}" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="applicant_email" class="col-sm-2">Email: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="applicant_email"
+                                       value="${applicant.email}" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="applicant_password" class="col-sm-2">Password: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="applicant_password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="applicant_update_btn" type="submit" class="btn btn-primary">Update Info</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+  
     <section>
         <c:forEach var="appliedJob" items="${applicantProfile.appliedJobs}">
             <div class="jumbotron">
@@ -87,7 +137,6 @@
             </div>
         </c:forEach>
     </section>
-
 </section>
 
 <section class="container" id="jobList" style="display: none">
