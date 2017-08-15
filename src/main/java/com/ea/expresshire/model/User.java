@@ -1,10 +1,13 @@
 package com.ea.expresshire.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue
@@ -21,6 +24,9 @@ public class User {
     private UserType userType;
 
     private Boolean enabled;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     //    private boolean isActive; //TODO: if we have enough time, we will do it.
 
@@ -54,5 +60,21 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

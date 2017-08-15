@@ -58,7 +58,8 @@
 
     <section id="applicantList" style="display: none">
         <h3>List of Applicants</h3>
-        <%--<c:forEach var="applicant" items="applicantList">--%>
+
+        <c:forEach var="applicant" items="${applicantList}">
             <div class="row jumbotron">
                 <header class="col-2">
                     <img class="rounded" src="http://lorempixel.com/150/150">
@@ -66,11 +67,11 @@
                 <div class="col-8">
                     <div class="row">
                         <p class="col-sm-2">Name</p>
-                        <p class="col-sm-10">Kshitij Chandra</p>
+                        <p class="col-sm-10">${applicant.firstName} ${applicant.lastName}</p>
                     </div>
                     <div class="row">
                         <p class="col-sm-2">Email</p>
-                        <p class="col-sm-10">kshitij@kshitij</p>
+                        <p class="col-sm-10">${applicant.email}</p>
                     </div>
                     <div class="row">
                         <p class="col-sm-2">Address</p>
@@ -78,39 +79,65 @@
                     </div>
                     <div class="row">
                         <p class="col-sm-2">Average Rating</p>
-                        <p class="col-sm-10">4.5</p>
+                        <p class="col-sm-10">
+                            <c:forEach var="i" begin="1" end="${applicant.averageRating}">
+                                &nbsp;<img style="width: 20px;" src="../img/star.png">
+                            </c:forEach>
+                        </p>
                     </div>
                 </div>
                 <div class="col-2">
-                    <form method="post" action="#">
-                    <%--<form method="post" action="/admin/removeUser">--%>
-                        <button type="submit" class="btn btn-danger">Delete Applicant</button>
+                    <form method="post" action="/admin/deleteApplicant">
+                        <input type="hidden" name="applicant_id" value="${applicant.id}">
+                        <input type="submit" class="btn btn-danger" value="Delete Applicant">
                     </form>
-
-                    <form method="post" action="#">
-                    <%--<form method="post" action="/admin/blackListUser">--%>
-                        <button type="submit" class="btn btn-dark">Add to BlackList</button>
+                    <form method="post" action="/admin/blackListApplicant">
+                        <input type="hidden" name="applicant_id" value="${applicant.id}">
+                        <input type="submit" class="btn btn-dark" value="Add to BlackList">
                     </form>
                 </div>
+                <c:forEach var="job" items="${applicant.appliedJobs}">
+                    <c:if test="${job.approvedApplicant.id == applicant.id}">
+                        <div class="list-group" style="margin:15px; width: 100%;">
+                            <div class="list-group-item active clearfix" data-toggle="collapse"
+                                 data-target="#job-${job.id}-applicant" style="color: #fff;">
+                                <span class="lead"><strong>${job.title} </strong></span>&nbsp; | &nbsp;<span
+                                    class="lead text-right" data-toggle="tooltip" data-placement="right"
+                                    title="Category"> ${job.category}</span>
 
-                <div class="list-group" style="margin:15px; width: 100%;">
-                    <a class="list-group-item active" data-toggle="collapse"
-                       data-target="#job2" style="color: #fff;">
-                        Job Title | Rating - 4.5
-                    </a>
-                    <span id="job2" class="collapse">
-                <a class="list-group-item list-group-item-action">
-                    <p>Job Description</p>
-                </a>
-            </span>
-                </div>
+
+                            </div>
+                            <span id="job-${job.id}-applicant" class="collapse">
+                            <div class="list-group-item list-group-item-action" style="padding-top: 20px">
+                                <div class="row" style="width: 100%">
+                                    <div class="col-3 lead" data-toggle="tooltip" data-placement="left"
+                                         title="Job Address"><img src="../img/location.png"/> ${applicant.address.street}, ${applicant.address.city}, ${applicant.address.state}, ${applicant.address.country}</div>
+                                    <div class="col-3 lead" data-toggle="tooltip" data-placement="top"
+                                         title="Duration"><img src="../img/time.png"/> ${job.duration} Hour(s)</div>
+                                    <div class="col-3 lead" data-toggle="tooltip" data-placement="bottom"
+                                         title="Rate"><img src="../img/dollar.png"/> ${job.duration} / Hour(s)</div>
+                                    <div class="col-3 lead" data-toggle="tooltip" data-placement="right" title="Rating">
+                                        <c:forEach var="i" begin="1" end="${job.reviewRating.rating}">
+                                            &nbsp;<img style="width: 20px;" src="../img/star.png">
+                                        </c:forEach>
+                                    </div>
+                                    <div class="col-12" data-toggle="tooltip" data-placement="left" title="Description"><hr>
+                                            ${job.description}</div>
+                                </div>
+                                <hr>
+
+                            </div>
+                        </span>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
-        <%--</c:forEach>--%>
+        </c:forEach>
     </section>
 
     <section id="recruiterList" style="display: none">
         <h3>List of Recruiter</h3>
-        <%--<c:forEach var="recruiter" items="recruiterList">--%>
+        <c:forEach var="recruiter" items="${recruiterList}">
             <div class="row jumbotron">
                 <header class="col-2">
                     <img class="rounded" src="http://lorempixel.com/150/150">
@@ -130,28 +157,36 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-danger">Delete Recruiter</button>
-                    <p></p>
-                    <button type="button" class="btn btn-dark">Add to BlackList</button>
+                    <form>
+                        <input type="hidden" name="recruiter_id" value="${recruiter.id}">
+                        <input type="submit" class="btn btn-danger" value="Delete Recruiter">
+                    </form>
+                    <form>
+                        <input type="hidden" name="recruiter_id" value="${recruiter.id}">
+                        <input type="submit" class="btn btn-dark" value="Add to BlackList">
+                    </form>
                 </div>
 
                 <div class="list-group" style="margin:15px; width: 100%;">
                     <a class="list-group-item active" data-toggle="collapse"
-                       data-target="#job" style="color: #fff;">
+                       data-target="#job-${job.id}-recruiter" style="color: #fff;">
                         Job Title
                     </a>
-                    <span id="job" class="collapse">
+                    <span id="job-${job.id}-recruiter" class="collapse">
                 <a class="list-group-item list-group-item-action">
                     <p>Job Description</p>
                 </a>
             </span>
                 </div>
             </div>
-        <%--</c:forEach>--%>
+        </c:forEach>
     </section>
 </section>
 
 <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     $(function () {
         $('#profileLink').click(function (e) {
             $("#adminProfile").delay(100).fadeIn(100);

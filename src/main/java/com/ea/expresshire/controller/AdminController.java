@@ -4,9 +4,13 @@ import com.ea.expresshire.dao.AdminRepository;
 import com.ea.expresshire.dao.ApplicantRepository;
 import com.ea.expresshire.dao.RecruiterRepository;
 import com.ea.expresshire.dao.UserRepository;
+import com.ea.expresshire.exception.UserNotFoundException;
 import com.ea.expresshire.model.Admin;
+import com.ea.expresshire.model.Applicant;
+import com.ea.expresshire.model.User;
 import com.ea.expresshire.model.UserType;
 import com.ea.expresshire.services.admin.AdminService;
+import com.ea.expresshire.services.applicant.ApplicantService;
 import com.ea.expresshire.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,22 +40,33 @@ public class AdminController {
     RecruiterRepository recruiterRepository;
 
     @Autowired
-    ApplicantRepository applicantRepository;
+    ApplicantService applicantService;
+
+    @Autowired
+    UserService userService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping("/admin")
     public String profile(Model model, Principal principal){
         model.addAttribute("adminProfile", adminService.getAdminByEmail(principal.getName()));
-//        model.addAttribute("applicantList", applicantRepository.findAll());
-//        model.addAttribute("recruiterList", recruiterRepository.findAll());
+        model.addAttribute("applicantList", applicantService.findApplicants());
+        model.addAttribute("recruiterList", recruiterRepository.findAll());
         return "admin";
     }
 
-    @RequestMapping(value = "/admin/signup",method = RequestMethod.POST)
-    public String adminSignup(@ModelAttribute("admin") Admin admin){
+    @RequestMapping(value = "/admin/deleteApplicant",method = RequestMethod.POST)
+    public String deleteUser(@ModelAttribute("admin") Admin admin){
         admin.setUserType(UserType.ROLE_ADMIN);
         adminService.addAdmin(admin);
-        return "redirect:/index";
+        return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "/admin/blackListApplicant",method = RequestMethod.POST)
+    public String blackListUser(long applicant_id) throws UserNotFoundException {
+        Applicant applicant = applicantService.findApplicantById(applicant_id);
+        applicantService.deleteApplicant(applicant);
+        userService.deleteUser(applicant);
+        return "redirect:/admin";
     }
 
 }

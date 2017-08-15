@@ -26,9 +26,9 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            <form method="post" action="/searchJob" class="form-inline my-2 my-lg-0">
+                <input name="key" class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="btn btn-success my-2 my-sm-0" type="submit" value="Search"/>
             </form>
             <button form="logout" type="submit" class="btn btn-success btn-link">Logout</button>
         </div>
@@ -62,7 +62,6 @@
     <%--</div>--%>
     <%--</div>--%>
     <%--</div>--%>
-
     <p>applicant profile here</p>
     <section>
         <c:forEach var="appliedJob" items="${applicantProfile.appliedJobs}">

@@ -23,6 +23,9 @@ public class JobController {
     @Autowired
     private RecruiterService recruiterService;
 
+    public JobController() {
+    }
+
     @Autowired
     public JobController(JobService jobService){
         this.jobService=jobService;
@@ -41,9 +44,9 @@ public class JobController {
         return "redirect:/recruiter";
     }
 
-    @GetMapping("/jobs")
-    public String getListOfJobs(Model model){
-        model.addAttribute("jobs", jobService.getJobs());
-        return "jobList";
-    }
+//    @GetMapping("/jobs")
+//    public String getListOfJobs(Model model){
+//        model.addAttribute("jobs", jobService.getJobs());
+//        return "jobList";
+//    }
 }
