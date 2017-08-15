@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label for="login_email" class="col-sm-2">Email: </label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="login_email" name="email" placeholder="Email">
+                            <input type="email" class="form-control" id="login_email" name="username" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group row">
