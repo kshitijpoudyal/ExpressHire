@@ -41,6 +41,21 @@
     <%--<input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email"--%>
     <%--name="username">--%>
     <%--</div>--%>
+        <div>
+            <div class="container">
+                <h2 class="text-center">Login</h2>
+                <form method="post" action="/login">
+                    <div class="form-group row">
+                        <label for="login_email" class="col-sm-2">Email: </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="login_email" name="username" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="login_password" class="col-sm-2 col-form-label">Password: </label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="password" id="login_password" placeholder="Password">
+                        </div>
     <%--<div class="form-group">--%>
     <%--<input type="password" class="form-control" placeholder="Password" name="password">--%>
     <%--</div>--%>
@@ -92,6 +107,17 @@
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="firstName" placeholder="First Name">
                     </div>
+                    <div class="form-group row">
+                        <label for="applicant_sign_up_email" class="col-sm-2">Email: </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="applicant_sign_up_email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="applicant_sign_up_password" class="col-sm-2">Password: </label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="applicant_sign_up_password" placeholder="Password">
+                        </div>
                 </div>
                 <div class="form-group row">
                     <label for="lastName" class="col-sm-2 col-form-label">Last Name: </label>
@@ -125,6 +151,18 @@
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="companyName" placeholder="Company Name">
                     </div>
+                  
+                    <div class="form-group row">
+                        <label for="recruiter_sign_up_email" class="col-sm-2">Email: </label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" id="recruiter_sign_up_email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="recruiter_sign_up_password" class="col-sm-2">Password: </label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="recruiter_sign_up_password" placeholder="Password">
+                        </div>
                 </div>
                 <div class="form-group row">
                     <label for="recruiter_sign_up_email" class="col-sm-2">Email: </label>

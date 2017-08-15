@@ -63,7 +63,67 @@
         <%--</div>--%>
     <%--</div>--%>
 
-        <p>recruiter profile</p>
+        <div>
+            <nav class="nav">
+                <div class="container">
+                    <ul class="nav nav-tabs">
+                        <li  class="nav-item"><a id="profile_option" class="nav-link active profile_update_option" href="#">Profile</a></li>
+                        <li  class="nav-item"><a id="update_profile_option" class="nav-link profile_update_option" href="#">Update Profile</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <section id="profile_nav" class="container" style="margin-top: 65px;">
+                <div class="row jumbotron">
+                    <header class="col-2">
+                        <img class="rounded" src="http://lorempixel.com/150/150">
+                    </header>
+                    <div class="col-10">
+                        <div class="row">
+                            <p class="col-sm-2">Company Name: </p>
+                            <p class="col-sm-10">${recruiter.companyName}</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-sm-2">Email</p>
+                            <p class="col-sm-10">${recruiter.email}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="update_profile_nav">
+                <div class="container">
+                    <form>
+                        <div class="form-group row">
+                            <label for="companyName" class="col-sm-2">Company Name: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="companyName"
+                                       value="${recruiter.companyName}" placeholder="Company Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="recruiter_email" class="col-sm-2">Email: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="recruiter_email"
+                                       value="${recruiter.email}" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="recruiter_password" class="col-sm-2">Password: </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="recruiter_password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="recruiter_update_btn" type="submit" class="btn btn-primary">Update Info</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
 
         <%--<div id="loginSingUpContainer">--%>
             <%--<div id="profileContainer" class="container well">--%>

@@ -12,7 +12,6 @@ public class ExceptionController {
     public String handleUserNotFoundException(ParentException ex, Model model) {
 
         model.addAttribute("errorMessage", ex.getMessage());
-
         return "error_page";
     }
 }
