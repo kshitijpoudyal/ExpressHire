@@ -28,7 +28,16 @@ public class User implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    //    private boolean isActive; //TODO: if we have enough time, we will do it.
+    private String imageLink;
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+//    private boolean isActive; //TODO: if we have enough time, we will do it.
 
     public long getId() {
         return id;

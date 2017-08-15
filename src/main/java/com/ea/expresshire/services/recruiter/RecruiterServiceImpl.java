@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,15 @@ public class RecruiterServiceImpl implements RecruiterService {
             currentRecruiter.setCompanyName(recruiter.getPassword());
         }
         recruiterRepository.save(currentRecruiter);
+    }
+
+    @Override
+    public List<Recruiter> findRecruiters() {
+        return recruiterRepository.findAll();
+    }
+
+    @Override
+    public void deleteRecruiter(Recruiter recruiter) {
+        recruiterRepository.delete(recruiter);
     }
 }
