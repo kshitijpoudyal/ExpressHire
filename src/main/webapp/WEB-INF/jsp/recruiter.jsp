@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Express Hire</title>
+    <title>Express Hire | Recruiter</title>
 </head>
 <body>
 <div class="header-top container-fluid">
@@ -21,6 +21,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" id="jobPostLink" href="#">JobPost</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="jobListLink" href="#">Posted Jobs</a>
                 </li>
 
             </ul>
@@ -138,7 +141,7 @@
 </section>
 
 <section class="container" id="jobPost" style="display: none">
-    <form action="jobPost" method="post">
+    <form action="/jobPost" method="post">
         <div class="form-group left" >
             <label for="job-title">Job Title</label>
             <input type="text" class="form-control" id="job-title"  name="title">
@@ -169,22 +172,27 @@
             <textarea class="form-control" rows="10" id="description"  name="description"> </textarea>
         </div>
 
+        <input type="hidden" name="recruiter_id" value="${recruiterProfile.id}">
+
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
-    <p>[Jobs Posted]</p>
-    <div class="list-group" style="width: 100%;">
-        <a class="list-group-item active" data-toggle="collapse"
-           data-target="#job" style="color: #fff;">
-            Job Title - Status
-        </a>
-        <span id="job" class="collapse">
+</section>
+<section id="jobList" style="display: none">
+    <p>Jobs Posted</p>
+        <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
+        <p>post</p>
+        <div class="list-group" style="width: 100%;">
+            <a class="list-group-item active" data-toggle="collapse"
+               data-target="#job" style="color: #fff;">
+                ${postedJob.title} - Status
+            </a>
+            <span id="job" class="collapse">
             <a class="list-group-item list-group-item-action">
-                <p>Job Description</p>
+                <p>${postedJob.description}</p>
             </a>
             <a class="list-group-item list-group-item-action">
-                    <form class="clearfix" style="width: 100%" action="/recruiter/job/reviewRating" method="POST">
-                                    <input type="hidden" name="episode_id" value="applicantId"/>
+                    <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
+                                    <input type="hidden" name="job_id" value="${postedJob.id}"/>
                                     <input type="number" name="rating" placeholder="Rate out of 10"/>
                                     <textarea class="form-control" name="comment" type="text"
                                               placeholder="Review..."></textarea>
@@ -193,7 +201,8 @@
                             </form>
             </a>
         </span>
-    </div>
+        </div>
+    </c:forEach>
 </section>
 <script>
     $(function () {
@@ -201,14 +210,28 @@
             e.preventDefault();
             $("#jobPost").delay(100).fadeIn(100);
             $("#userProfile").fadeOut(100);
+            $("#jobList").fadeOut(100);
             $('#userProfileLink').removeClass('active');
+            $('#jobListLink').removeClass('active');
             $(this).addClass('active');
         });
 
         $('#userProfileLink').click(function (e) {
             $("#userProfile").delay(100).fadeIn(100);
             $("#jobPost").fadeOut(100);
+            $("#jobList").fadeOut(100);
             $('#jobPostLink').removeClass('active');
+            $('#jobListLink').removeClass('active');
+            $(this).addClass('active');
+            e.preventDefault();
+        });
+
+        $('#jobListLink').click(function (e) {
+            $("#jobList").delay(100).fadeIn(100);
+            $("#jobPost").fadeOut(100);
+            $("#userProfile").fadeOut(100);
+            $('#jobPostLink').removeClass('active');
+            $('#userProfileLink').removeClass('active');
             $(this).addClass('active');
             e.preventDefault();
         });

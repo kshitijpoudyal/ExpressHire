@@ -49,7 +49,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/signup",method = RequestMethod.POST)
     public String adminSignup(@ModelAttribute("admin") Admin admin){
-        System.out.println("inside admin signup");
+        admin.setUserType(UserType.ROLE_ADMIN);
         adminService.addAdmin(admin);
         return "redirect:/index";
     }

@@ -9,7 +9,9 @@
 <body>
 <div class="header-top container-fluid">
     <nav class="navbar navbar-toggleable-md fixed-top navbar-light bg-faded">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">Express-Hire</a>
@@ -21,7 +23,7 @@
                     <a class="nav-link active" id="userProfileLink" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="jobListLink" href="/jobs">JobList</a>
+                    <a class="nav-link active" id="jobListLink" href="#">JobList</a>
                 </li>
 
             </ul>
@@ -132,28 +134,55 @@
             </div>
 
         </div>
+  
+    <section>
+        <c:forEach var="appliedJob" items="${applicantProfile.appliedJobs}">
+            <div class="jumbotron">
+                <div class="list-group" style="width: 100%;">
+                    <a class="list-group-item active" data-toggle="collapse"
+                       data-target="#job1" style="color: #fff;">
+                            ${appliedJob.title} - Status
+                    </a>
+                    <span id="job1" class="collapse">
+
+                    <a class="list-group-item list-group-item-action">
+                        <ul>
+                            <li>${appliedJob.title} - Status</li>
+                            <li>${appliedJob.type}</li>
+                            <li>${appliedJob.location}</li>
+                            <li>${appliedJob.category}</li>
+                            <li>${appliedJob.description}</li>
+                        </ul>
+                    </a>
+                </span>
+                </div>
+            </div>
+        </c:forEach>
+    </section>
 </section>
 
 <section class="container" id="jobList" style="display: none">
     <section>
-            <p>[Jobs Applied]</p>
-            <div class="list-group" style="width: 100%;">
-                <a class="list-group-item active" data-toggle="collapse"
-                   data-target="#job1" style="color: #fff;">
-                    Job Title - Status
-                </a>
-                <span id="job1" class="collapse">
-            <a class="list-group-item list-group-item-action">
-            <p>Job Description</p>
-            </a>
-            </span>
+        <c:forEach var="job" items="${jobs}">
+            <div class="jumbotron">
+                <ul>
+                    <li>${job.type}</li>
+                    <li>${job.location}</li>
+                    <li>${job.category}</li>
+                    <li>${job.description}</li>
+                </ul>
+                <form method="post" action="applicant/applyJob">
+                    <input type="hidden" name="job_id" value="${job.id}">
+                    <input type="submit">
+                </form>
             </div>
+            </div>
+        </c:forEach>
     </section>
-
 </section>
 <script>
     $(function () {
-        $('#jobPostLink').click(function (e) {
+        $('#jobListLink').click(function (e) {
             e.preventDefault();
             $("#jobList").delay(100).fadeIn(100);
             $("#userProfile").fadeOut(100);

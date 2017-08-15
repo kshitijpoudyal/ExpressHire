@@ -1,8 +1,10 @@
 package com.ea.expresshire.controller;
 
 import com.ea.expresshire.model.Applicant;
+import com.ea.expresshire.model.Job;
 import com.ea.expresshire.model.UserType;
 import com.ea.expresshire.services.applicant.ApplicantService;
+import com.ea.expresshire.services.job.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +22,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/applicant")
 public class ApplicantController {
-
+    @Autowired
+    private JobService jobService;
     @Autowired
     private ApplicantService applicantService;
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -48,9 +51,18 @@ public class ApplicantController {
     @PreAuthorize("hasRole('ROLE_APPLICANT')")
     @RequestMapping("")
     public String profile(Model model, Principal principal){
-        System.out.println("in applicant controller");
-        model.addAttribute("applicant", applicantService.getApplicantByEmail(principal.getName()));
-        System.out.println(applicantService.getApplicantByEmail(principal.getName()));
+        model.addAttribute("applicantProfile", applicantService.getApplicantByEmail(principal.getName()));
+        model.addAttribute("jobs", jobService.getJobs());
         return "applicant";
     }
+
+    @PreAuthorize("hasRole('ROLE_APPLICANT')")
+    @RequestMapping("/applyJob")
+    public String applyJob(Principal principal,long job_id){
+        Applicant applicant = applicantService.getApplicantByEmail(principal.getName());
+        applicant.getAppliedJobs().add(jobService.getJob(job_id));
+        applicantService.addNewApplicant(applicant);
+        return "redirect:/applicant";
+    }
+
 }
