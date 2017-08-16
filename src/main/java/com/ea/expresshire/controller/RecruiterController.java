@@ -3,16 +3,15 @@ package com.ea.expresshire.controller;
 import com.ea.expresshire.model.Applicant;
 import com.ea.expresshire.model.Recruiter;
 import com.ea.expresshire.model.UserType;
+import com.ea.expresshire.services.applicant.ApplicantService;
+import com.ea.expresshire.services.job.JobService;
 import com.ea.expresshire.services.recruiter.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -23,6 +22,10 @@ public class RecruiterController {
 
     @Autowired
     RecruiterService recruiterService;
+    @Autowired
+    JobService jobService;
+    @Autowired
+    ApplicantService applicantService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     //TODO: put @Valid.
@@ -42,5 +45,23 @@ public class RecruiterController {
     public String profile(Model model, Principal principal){
         model.addAttribute("recruiterProfile", recruiterService.getRecruiterByEmail(principal.getName()));
         return "recruiter";
+    }
+
+
+    @PreAuthorize("hasRole('ROLE_RECRUITER')")
+    @RequestMapping(value = "/approvedJobs",method = RequestMethod.POST)
+    public String approvedJob( long applicantId,long job_id){
+        jobService.getJob(job_id).setApprovedApplicant(applicantService.findApplicantById(applicantId));
+        System.out.println(jobService.getJob(job_id).getApprovedApplicant().getFirstName());
+        //System.out.println(jobService.getJob(job_id).getApplicants().remove(applicantService.findApplicantById(applicantId)));
+        jobService.getJob(job_id).getApplicants().remove(applicantService.findApplicantById(applicantId));
+        applicantService.findApplicantById(applicantId).deleteAppliedJob(jobService.getJob(job_id));
+        jobService.getJob(job_id).removeApplicants(applicantService.findApplicantById(applicantId));
+        applicantService.findApplicantById(applicantId).getAppliedJobs().remove(jobService.getJob(job_id));
+        jobService.getJob(job_id).getApplicants().remove(applicantService.findApplicantById(applicantId));
+
+        //applicantService.deleteApplicantById(applicantId);
+        return "redirect:/recruiter";
+
     }
 }

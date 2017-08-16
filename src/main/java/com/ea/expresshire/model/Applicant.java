@@ -44,4 +44,8 @@ public class Applicant extends User{
     public void setAppliedJobs(List<Job> appliedJobs) {
         this.appliedJobs = appliedJobs;
     }
+
+    public void deleteAppliedJob(Job job){
+        appliedJobs.remove(job);
+    }
 }

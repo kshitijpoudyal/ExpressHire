@@ -1,6 +1,7 @@
 package com.ea.expresshire.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class Job {
     public String category;
     public String description;
     public String hourlyRate;
-    public String duration;
+    public int duration;
     @ManyToMany(mappedBy = "appliedJobs")
     private List<Applicant> applicants;
 
@@ -27,6 +28,12 @@ public class Job {
 
     @OneToOne(cascade = CascadeType.ALL)
     private ReviewRating reviewRating;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
+
+    @Enumerated(EnumType.STRING)
+    private JobStatus jobStatus;
 
     public ReviewRating getReviewRating() {
         return reviewRating;
@@ -102,7 +109,27 @@ public class Job {
 
     public void setHourlyRate(String hourlyRate) { this.hourlyRate = hourlyRate;}
 
-    public String getDuration() { return duration;}
+    public int getDuration() { return duration;}
 
-    public void setDuration(String duration) { this.duration = duration;}
+    public void setDuration(int duration) { this.duration = duration;}
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public JobStatus getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(JobStatus jobStatus) {
+        this.jobStatus = jobStatus;
+    }
+
+    public void removeApplicants(Applicant applicant){
+        applicants.remove(applicant);
+    }
 }

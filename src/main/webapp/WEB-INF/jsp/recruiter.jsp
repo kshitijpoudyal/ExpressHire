@@ -38,6 +38,7 @@
     </nav>
 
 </div>
+<div class="container">
 <section id="userProfile" class="container">
     <%--<div class="row jumbotron">--%>
         <%--<header class="col-2">--%>
@@ -120,16 +121,31 @@
 <section id="jobList" style="display: none">
     <p>Jobs Posted</p>
         <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
-        <p>post</p>
         <div class="list-group" style="width: 100%;">
-            <a class="list-group-item active" data-toggle="collapse"
-               data-target="#job" style="color: #fff;">
-                ${postedJob.title} - Status
+            <a class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
+               data-target="#job_${postedJob.id}" style="color: #fff;">
+                ${postedJob.title} - ${postedJob.jobStatus}
             </a>
-            <span id="job" class="collapse">
+            <span id="job_${postedJob.id}" class="collapse">
             <a class="list-group-item list-group-item-action">
                 <p>${postedJob.description}</p>
             </a>
+                <ul>
+                <li class="applicant">Applicants :</li>
+                <form action="/recruiter/approvedJobs" method="post">
+                <c:forEach var="app" items="${postedJob.applicants}">
+                    <input type="hidden" name="job_id" value="${postedJob.id}"/>
+                    <input type="hidden" name="applicantId" value="${app.id}"/>
+
+
+                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary " type="submit" value="Approve"/> </li>
+
+                </c:forEach>
+                    </form>
+
+                    </ul>
+                    <c:choose>
+                    <c:when test="${postedJob.jobStatus =='COMPLETED'}">
             <a class="list-group-item list-group-item-action">
                     <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
                                     <input type="hidden" name="job_id" value="${postedJob.id}"/>
@@ -140,10 +156,13 @@
                                     <input class="btn btn-outline-primary float-right" type="submit" value="Post"/>
                             </form>
             </a>
+                    </c:when>
+                    </c:choose>
         </span>
         </div>
     </c:forEach>
 </section>
+</div>
 <script>
     $(function () {
         $('#jobPostLink').click(function (e) {
@@ -175,6 +194,15 @@
             $(this).addClass('active');
             e.preventDefault();
         });
+
+       <%--$('#title_${postedJob.id}').click(function (e) {--%>
+            <%--$('#job_${postedJob.id}').removeClass('collapse');--%>
+           <%--$(this).addClass('active');--%>
+           <%--$('.list-group span').css("display", "block");--%>
+           <%--e.preventDefault();--%>
+
+        <%--});--%>
+
 
     });
 </script>

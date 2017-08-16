@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,4 +59,15 @@ public class ApplicantServiceImpl implements ApplicantService{
     public Applicant getApplicantByEmail(String email) {
         return applicantRepository.findByEmail(email);
     }
+
+    @Override
+    public void deleteApplicant(Applicant applicant) {
+        applicantRepository.delete(applicant);
+    }
+
+   /* @Override
+    public List<Applicant> getAllApplicant(){
+        applicantRepository.findAll();
+    }*/
+
 }

@@ -99,6 +99,7 @@
                     <li>${job.type}</li>
                     <li>${job.location}</li>
                     <li>${job.category}</li>
+                    <li>${job.duration}</li>
                     <li>${job.description}</li>
                 </ul>
                 <form method="post" action="applicant/applyJob">

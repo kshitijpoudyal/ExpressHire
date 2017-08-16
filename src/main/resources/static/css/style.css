@@ -26,5 +26,17 @@
     position: relative;
     top: 32px;
 }
+.collapse li {
+    list-style-type: none;
+    display: inline-block;
+    color: #0275d8;
+    margin-right: 10px;
+}
+.list-group {
+    margin-bottom: 30px;
+}
+.applicant {
+    color: #8ad178 !important;
+}
 
 
