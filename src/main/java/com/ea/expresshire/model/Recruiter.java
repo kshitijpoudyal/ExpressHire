@@ -14,7 +14,8 @@ public class Recruiter extends User{
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
+//    @OneToMany(cascade = CascadeType.ALL)
     private List<Job> postedJobs;
 
     private int averageRating;

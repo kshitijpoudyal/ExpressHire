@@ -15,10 +15,12 @@ public class Applicant extends User{
     //@NotEmpty
     private String lastName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+//    @ManyToMany(cascade = CascadeType.ALL)
     private List<Job> appliedJobs;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
+//    @OneToMany(cascade = CascadeType.ALL)
     private List<Job> approvedJobs;
 
     private int averageRating;

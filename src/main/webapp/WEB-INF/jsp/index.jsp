@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
 <!DOCTYPE html>
@@ -61,7 +62,7 @@
                             <input type="text" class="form-control" id="firstName" placeholder="First Name">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="lastName" placeholder="First Name">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="applicant_sign_up_email"
@@ -98,24 +99,24 @@
                 </div>
 
                 <div id="signUpAdmin">
-                    <form id="signupForm" method="post" action="/admin/signup">
+                    <form:form id="signupForm" method="post" action="/admin/signup" modelAttribute="admin">
                         <div class="form-group">
-                            <input name="email" type="email" class="form-control" placeholder="Email" required>
+                            <form:input path="email" class="form-control" placeholder="Email"/>
+                            <form:errors path="email" class="form-control alert-warning" placeholder="Email"/>
                         </div>
                         <div class="form-group">
-                            <input name="fullName" type="text" class="form-control" placeholder="Full Name"
-                                   required>
+                            <form:input path="fullName" type="text" class="form-control" placeholder="Full Name"/>
+                            <form:errors path="fullName" type="text" class="form-control" placeholder="Full Name"/>
                         </div>
                         <div class="form-group">
-                            <input name="password" type="password" class="form-control" placeholder="Password"
-                                   required>
+                            <form:input path="password" type="password" class="form-control" placeholder="Password"/>
+                            <form:errors name="password" type="password" class="form-control" placeholder="Password"/>
                         </div>
                         <div class="form-group">
-                            <input name="re-password" type="password" class="form-control" placeholder="Re-Password"
-                                   required>
+                            <input name="re-password" type="password" class="form-control" placeholder="Re-Password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

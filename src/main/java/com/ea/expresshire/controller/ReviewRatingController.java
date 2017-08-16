@@ -7,6 +7,7 @@ import com.ea.expresshire.services.ReviewRating.ReviewRatingService;
 import com.ea.expresshire.services.job.JobService;
 import com.ea.expresshire.services.recruiter.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import java.security.Principal;
  * Created by kcp on 8/12/17.
  */
 @Controller
+@PreAuthorize("hasRole('ROLE_RECRUITER')")
 public class ReviewRatingController {
     @Autowired
     ReviewRatingService reviewRatingService;
