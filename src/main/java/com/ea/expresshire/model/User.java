@@ -1,8 +1,10 @@
 package com.ea.expresshire.model;
 
-import org.hibernate.annotations.Cascade;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -13,11 +15,12 @@ public class User implements Serializable {
     @GeneratedValue
     private long id;
 
-//    @NotEmpty
-//    @Email
+    @NotEmpty
+    @Email
     private String email;
 
-    //    @NotEmpty
+    @NotEmpty
+    @Size(min = 3, max=30)
     private String password;
 
     @Enumerated(EnumType.STRING)

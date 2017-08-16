@@ -19,7 +19,6 @@ public class JobSearchController {
     @Autowired
     private JobService jobService;
 
-    @PreAuthorize("hasRole('ROLE_APPLICANT')")
     @RequestMapping(value = "/searchJob", method = RequestMethod.POST)
     public String searchJobs(Model model, String key){
         if(key.equals("")){

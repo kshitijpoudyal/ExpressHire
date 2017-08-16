@@ -5,6 +5,7 @@ import com.ea.expresshire.model.Recruiter;
 import com.ea.expresshire.services.job.JobService;
 import com.ea.expresshire.services.recruiter.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.Principal;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_RECRUITER')")
 public class JobController {
 
     @Autowired
@@ -44,9 +46,4 @@ public class JobController {
         return "redirect:/recruiter";
     }
 
-//    @GetMapping("/jobs")
-//    public String getListOfJobs(Model model){
-//        model.addAttribute("jobs", jobService.getJobs());
-//        return "jobList";
-//    }
 }

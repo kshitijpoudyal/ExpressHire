@@ -71,7 +71,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
                 </div>
                 <div class="modal-body container">
-                    <form id="updateForm" method="post" action="/admin/editProfile" enctype="multipart/form-data">
+                    <form id="updateForm" method="post" action="/admin/editProfile" modelAttribute="admin" enctype="multipart/form-data">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
