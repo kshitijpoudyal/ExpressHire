@@ -41,6 +41,7 @@
     </nav>
 
 </div>
+
 <div class="container">
     <section id="userProfile" class="container">
         <p>recruiter profile</p>
@@ -81,14 +82,15 @@
                             <label for="companyName" class="col-sm-2">Company Name: </label>
                             <div class="col-sm-8">
                                 <form:input path="companyName" type="text" class="form-control" id="companyName"
-                                       value="${recruiterProfile.companyName}" placeholder="Company Name"/>
+                                            value="${recruiterProfile.companyName}" placeholder="Company Name"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="recruiter_email" class="col-sm-2">Email: </label>
                             <div class="col-sm-8">
-                                <form:input path="email" type="email" name="email" class="form-control" id="recruiter_email"
-                                       value="${recruiterProfile.email}" placeholder="Email"/>
+                                <form:input path="email" type="email" name="email" class="form-control"
+                                            id="recruiter_email"
+                                            value="${recruiterProfile.email}" placeholder="Email"/>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -148,69 +150,67 @@
     <section class="container" id="jobList" style="display: none">
         <p>Jobs Posted</p>
         <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
-        <div class="list-group" style="width: 100%;">
-            <a class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
-               data-target="#job_${postedJob.id}" style="color: #fff;">
-                    ${postedJob.title} - ${postedJob.jobStatus}
-            </a>
-            <span id="job_${postedJob.id}" class="collapse">
-        <div class="list-group" style="width: 100%;">
-            <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
-                <div class="mgr">
-                    <div class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
-                         data-target="#job_${postedJob.id}" style="color: #fff;">
+            <div class="mgr">
+                <div class="list-group" style="width: 100%;">
+                    <a class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
+                       data-target="#job_${postedJob.id}" style="color: #fff;">
                             ${postedJob.title} - ${postedJob.jobStatus}
+                    </a>
+                </div>
 
-                    </div>
-                    <span id="job_${postedJob.id}" class="raw collapse">
-            <a class="list-group-item list-group-item-action">
+                <span id="job_${postedJob.id}" class="raw collapse">
+            <div class="list-group-item list-group-item-action">
                 <p>${postedJob.description}</p>
                 <c:if test="${postedJob.jobStatus=='ONGOING'}">
-                            <form action="/recruiter/updateStatus" method="post">
-                                <input type="hidden" name="job_id" value="${postedJob.id}"/>
-
-                                <span class="statusBtn"><input class="btn btn-outline-primary float-right" type="submit" value="Completed"/></span>
-                            </form>
+                    <form action="/recruiter/updateStatus" method="post">
+                        <input type="hidden" name="job_id" value="${postedJob.id}"/>
+                        <span class="statusBtn">
+                            <input class="btn btn-outline-primary float-right" type="submit" value="Completed"/>
+                        </span>
+                    </form>
                 </c:if>
-            </a>
-                <c:if test="${empty postedJob.approvedApplicant}">
+            </div>
+            <c:if test="${empty postedJob.approvedApplicant}">
                 <ul>
                 <li class="applicant">Applicants :</li>
+
                 <form action="/recruiter/approvedJobs" method="post">
                 <c:forEach var="app" items="${postedJob.applicants}">
                     <input type="hidden" name="job_id" value="${postedJob.id}"/>
                     <input type="hidden" name="applicantId" value="${app.id}"/>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary " type="submit" value="Approve"/>
-                  </li>
+                    <li class="list-group">
+                        <a href="#">${app.firstName}></a>
+                        <input class="btn btn-outline-primary" type="submit" value="Approve"/>
+                    </li>
 
                 </c:forEach>
-                    </form>
+                </form>
 
-                    </ul>
-                </c:if>
-                    <c:choose>
-                        <c:when test="${postedJob.jobStatus =='COMPLETED'}">
-            <a class="list-group-item list-group-item-action">
-                    <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
-                                    <input type="hidden" name="job_id" value="${postedJob.id}"/>
-                                    <input type="number" name="rating" placeholder="Rate out of 10"/>
-                                    <textarea class="form-control" name="comment" type="text"
-                                              placeholder="Review..."></textarea>
-                                    <br>
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                    <input class="btn btn-outline-primary float-right" type="submit" value="Post"/>
-                            </form>
-            </a>
-                        </c:when>
-                    </c:choose>
+                </ul>
+            </c:if>
+            <c:choose>
+                <c:when test="${postedJob.jobStatus =='COMPLETED'}">
+                    <a class="list-group-item list-group-item-action">
+                        <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
+                            <input type="hidden" name="job_id" value="${postedJob.id}"/>
+                            <input type="number" name="rating" placeholder="Rate out of 10"/>
+                            <textarea class="form-control" name="comment" type="text"
+                                      placeholder="Review..."></textarea>
+                            <br>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input class="btn btn-outline-primary float-right" type="submit"
+                                   value="Post"/>
+                        </form>
+                    </a>
+                </c:when>
+            </c:choose>
         </span>
-                </div>
-            </c:forEach>
-        </div>
+            </div>
+        </c:forEach>
     </section>
-        </div>
+</div>
 <script>
     $(function () {
         $('#jobPostLink').click(function (e) {
