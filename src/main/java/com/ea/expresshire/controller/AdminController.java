@@ -12,6 +12,7 @@ import com.ea.expresshire.services.email.EmailService;
 import com.ea.expresshire.services.recruiter.RecruiterService;
 import com.ea.expresshire.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -53,6 +54,7 @@ public class AdminController {
     @Autowired
     EmailService emailService;
 
+    @Scheduled(cron = "${my.cron.expression2}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping("/admin")
     public String profile(Model model, Principal principal){
