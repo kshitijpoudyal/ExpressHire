@@ -29,6 +29,7 @@
 
             </ul>
             <form method="post" action="/searchJob" class="form-inline my-2 my-lg-0">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <input name="key" class="form-control mr-sm-2" type="text" placeholder="Search">
                 <input class="btn btn-success my-2 my-sm-0" type="submit" value="Search"/>
             </form>
@@ -106,6 +107,7 @@
                                        name="password" placeholder="Password"/>
                             </div>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <div class="form-group">
                             <button id="applicant_update_btn" type="submit" class="btn btn-primary">Update Info</button>
                         </div>
@@ -153,6 +155,7 @@
                     <li>${job.description}</li>
                 </ul>
                 <form method="post" action="applicant/applyJob">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <input type="hidden" name="job_id" value="${job.id}">
                     <input type="submit">
                 </form>

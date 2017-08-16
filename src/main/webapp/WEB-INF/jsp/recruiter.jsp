@@ -147,6 +147,13 @@
     </section>
     <section class="container" id="jobList" style="display: none">
         <p>Jobs Posted</p>
+        <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
+        <div class="list-group" style="width: 100%;">
+            <a class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
+               data-target="#job_${postedJob.id}" style="color: #fff;">
+                    ${postedJob.title} - ${postedJob.jobStatus}
+            </a>
+            <span id="job_${postedJob.id}" class="collapse">
         <div class="list-group" style="width: 100%;">
             <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
                 <div class="mgr">
@@ -173,11 +180,10 @@
                 <c:forEach var="app" items="${postedJob.applicants}">
                     <input type="hidden" name="job_id" value="${postedJob.id}"/>
                     <input type="hidden" name="applicantId" value="${app.id}"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-
-                    <a href="#"><li class="list-group">${app.firstName}</a> <input class="btn btn-outline-primary "
-                                                                                    type="submit"
-                                                                                    value="Approve"/> </li>
+                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary " type="submit" value="Approve"/>
+                  </li>
 
                 </c:forEach>
                     </form>
@@ -193,6 +199,7 @@
                                     <textarea class="form-control" name="comment" type="text"
                                               placeholder="Review..."></textarea>
                                     <br>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <input class="btn btn-outline-primary float-right" type="submit" value="Post"/>
                             </form>
             </a>

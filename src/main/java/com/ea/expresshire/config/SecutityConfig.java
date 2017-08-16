@@ -39,7 +39,7 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/").loginProcessingUrl("/login").defaultSuccessUrl("/afterLogin",true).usernameParameter("username").passwordParameter("password").permitAll()
-                .and().csrf().disable();
+               .and().csrf().disable();
     }
 
     @Override
@@ -49,8 +49,8 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter{
                     .usersByUsernameQuery(
                             "select email,password,enabled from user where email=?")
                     .authoritiesByUsernameQuery(
-                            "select email, user_type from user where email=?");
 //                            "select email, user_type from user where email=?").passwordEncoder(passwordEncoder);
+                            "select email, user_type from user where email=?");
         } catch (Exception e) {
             e.printStackTrace();
         }
