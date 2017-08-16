@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
@@ -75,31 +76,32 @@
 
             <div id="update_profile_nav">
                 <div class="container">
-                    <form>
+                    <form:form action="/recruiter/update" method="post" modelAttribute="recruiterProfile">
                         <div class="form-group row">
                             <label for="companyName" class="col-sm-2">Company Name: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="companyName"
-                                       value="${recruiterProfile.companyName}" placeholder="Company Name">
+                                <form:input path="companyName" type="text" class="form-control" id="companyName"
+                                       value="${recruiterProfile.companyName}" placeholder="Company Name"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="recruiter_email" class="col-sm-2">Email: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="recruiter_email"
-                                       value="${recruiterProfile.email}" placeholder="Email">
+                                <form:input path="email" type="email" name="email" class="form-control" id="recruiter_email"
+                                       value="${recruiterProfile.email}" placeholder="Email"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="recruiter_password" class="col-sm-2">Password: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="recruiter_password" placeholder="Password">
+                                <form:input path="password" type="password" name="password" class="form-control"
+                                            id="recruiter_password" placeholder="Password"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <button id="recruiter_update_btn" type="submit" class="btn btn-primary">Update Info</button>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>
@@ -201,7 +203,7 @@
             </c:forEach>
         </div>
     </section>
-</div>
+        </div>
 <script>
     $(function () {
         $('#jobPostLink').click(function (e) {
