@@ -16,9 +16,10 @@ public interface ApplicantService {
 
     Applicant getApplicantByEmail(String email);
 
+    void deleteApplicant(Applicant applicant);
+
     List<Applicant> findApplicants();
 
-    void deleteApplicant(Applicant applicant);
 }
 
 

@@ -60,15 +60,15 @@
                     <div class="col-10">
                         <div class="row">
                             <p class="col-sm-2">FirstName: </p>
-                            <p class="col-sm-10">${applicant.firstName}</p>
+                            <p class="col-sm-10">${applicantProfile.firstName}</p>
                         </div>
                         <div class="row">
                             <p class="col-sm-2">Last Name: </p>
-                            <p class="col-sm-10">${applicant.lastName}</p>
+                            <p class="col-sm-10">${applicantProfile.lastName}</p>
                         </div>
                         <div class="row">
                             <p class="col-sm-2">Email</p>
-                            <p class="col-sm-10">${applicant.email}</p>
+                            <p class="col-sm-10">${applicantProfile.email}</p>
                         </div>
                     </div>
                 </div>
@@ -81,21 +81,21 @@
                             <label for="firstName" class="col-sm-2">First Name: </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="firstName"
-                                       value="${applicant.firstName}" placeholder="First Name">
+                                       value="${applicantProfile.firstName}" placeholder="First Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="lastName" class="col-sm-2 col-form-label">Last Name: </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="lastName"
-                                       value="${applicant.lastName}" placeholder="Last Name">
+                                       value="${applicantProfile.lastName}" placeholder="Last Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="applicant_email" class="col-sm-2">Email: </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="applicant_email"
-                                       value="${applicant.email}" placeholder="Email">
+                                       value="${applicantProfile.email}" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -147,6 +147,7 @@
                     <li>${job.type}</li>
                     <li>${job.location}</li>
                     <li>${job.category}</li>
+                    <li>${job.duration}</li>
                     <li>${job.description}</li>
                 </ul>
                 <form method="post" action="applicant/applyJob">
