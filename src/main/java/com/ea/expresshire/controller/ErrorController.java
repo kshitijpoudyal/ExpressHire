@@ -12,4 +12,9 @@ public class ErrorController {
     public String err(){
         return "403";
     }
+
+    @RequestMapping("/404")
+    public String err404(){
+        return "404";
+    }
 }

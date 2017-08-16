@@ -30,6 +30,7 @@
             </li>
         </ul>
         <form action="/logout" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <button type="submit" class="btn btn-success btn-link">Logout</button>
         </form>
     </div>
@@ -101,6 +102,7 @@
                                 <input type="file" name="image" class="form-control-file">
                             </div>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -149,18 +151,21 @@
                 </div>
                 <div class="col-2">
                     <form method="post" action="/admin/deleteApplicant">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <input type="hidden" name="applicant_id" value="${applicant.id}">
                         <input type="submit" class="btn btn-danger" value="Delete Applicant">
                     </form>
                     <c:choose>
                         <c:when test="${applicant.enabled == true}">
                             <form method="post" action="/admin/blackListApplicant">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="applicant_id" value="${applicant.id}">
                                 <input type="submit" class="btn btn-dark" value="Disable Applicant">
                             </form>
                         </c:when>
                         <c:otherwise>
                             <form method="post" action="/admin/removeFromBlackListApplicant">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="applicant_id" value="${applicant.id}">
                                 <input type="submit" class="btn btn-dark" value="Enable Applicant">
                             </form>
@@ -238,18 +243,21 @@
                 </div>
                 <div class="col-2">
                     <form method="post" action="/admin/deleteRecruiter">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <input type="hidden" name="recruiter_id" value="${recruiter.id}">
                         <input type="submit" class="btn btn-danger" value="Delete Applicant">
                     </form>
                     <c:choose>
                         <c:when test="${recruiter.enabled == true}">
                             <form method="post" action="/admin/blackListRecruiter">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="recruiter_id" value="${recruiter.id}">
                                 <input type="submit" class="btn btn-dark" value="Disable Recruiter">
                             </form>
                         </c:when>
                         <c:otherwise>
                             <form method="post" action="/admin/removeFromBlackListRecruiter">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="recruiter_id" value="${recruiter.id}">
                                 <input type="submit" class="btn btn-dark" value="Enable Recruiter">
                             </form>
@@ -261,19 +269,17 @@
                     <%--<c:if test="${job.approvedApplicant.id == applicant.id}">--%>
                     <div class="list-group" style="margin:15px; width: 100%;">
                         <div class="list-group-item active clearfix" data-toggle="collapse"
-                             data-target="#job-${job.id}-applicant" style="color: #fff;">
+                             data-target="#job-${job.id}-recruiter" style="color: #fff;">
                             <span class="lead"><strong>${job.title} </strong></span>&nbsp; | &nbsp;<span
                                 class="lead text-right" data-toggle="tooltip" data-placement="right"
                                 title="Category"> ${job.category}</span>
-
-
                         </div>
-                        <span id="job-${job.id}-applicant" class="collapse">
+                        <span id="job-${job.id}-recruiter" class="collapse">
                             <div class="list-group-item list-group-item-action" style="padding-top: 20px">
                                 <div class="row" style="width: 100%">
                                     <div class="col-3 lead" data-toggle="tooltip" data-placement="left"
                                          title="Job Address"><img
-                                            src="../img/location.png"/> ${applicant.address.street}, ${applicant.address.city}, ${applicant.address.state}, ${applicant.address.country}</div>
+                                            src="../img/location.png"/> ${recruiter.address.street}, ${recruiter.address.city}, ${recruiter.address.state}, ${recruiter.address.country}</div>
                                     <div class="col-3 lead" data-toggle="tooltip" data-placement="top"
                                          title="Duration"><img src="../img/time.png"/> ${job.duration} Hour(s)</div>
                                     <div class="col-3 lead" data-toggle="tooltip" data-placement="bottom"

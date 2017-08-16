@@ -15,11 +15,11 @@ public class User implements Serializable {
     @GeneratedValue
     private long id;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "Field should not be empty")
+    @Email(message = "Not a valid email example@example.com")
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "Field should not be empty")
     @Size(min = 3, max=30)
     private String password;
 

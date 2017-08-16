@@ -38,6 +38,7 @@
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <button type="submit" class="btn btn-success">Login</button>
             </form>
         </div>
@@ -72,6 +73,7 @@
                             <input type="text" class="form-control" id="applicant_sign_up_password"
                                    placeholder="Password">
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <div class="form-group">
                             <button id="applicant_sign_up" type="submit" class="btn btn-primary">Sign up</button>
                         </div>
@@ -95,6 +97,7 @@
                         <div class="form-group">
                             <button id="recruiter_sign_up" type="submit" class="btn btn-primary">Sign up</button>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form>
                 </div>
 
@@ -102,19 +105,20 @@
                     <form:form id="signupForm" method="post" action="/admin/signup" modelAttribute="admin">
                         <div class="form-group">
                             <form:input path="email" class="form-control" placeholder="Email"/>
-                            <form:errors path="email" class="form-control alert-warning" placeholder="Email"/>
+                            <form:errors path="email" class="form-control alert-danger" placeholder="Email"/>
                         </div>
                         <div class="form-group">
                             <form:input path="fullName" type="text" class="form-control" placeholder="Full Name"/>
-                            <form:errors path="fullName" type="text" class="form-control" placeholder="Full Name"/>
+                            <form:errors path="fullName" type="text" class="form-control alert-danger" placeholder="Full Name"/>
                         </div>
                         <div class="form-group">
                             <form:input path="password" type="password" class="form-control" placeholder="Password"/>
-                            <form:errors name="password" type="password" class="form-control" placeholder="Password"/>
+                            <form:errors path="password" type="password" class="form-control alert-danger" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <input name="re-password" type="password" class="form-control" placeholder="Re-Password"/>
                         </div>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form:form>
                 </div>
