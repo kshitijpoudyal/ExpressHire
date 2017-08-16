@@ -41,14 +41,16 @@
 
 </div>
 <div class="container">
-<section id="userProfile" class="container">
-    <p>recruiter profile</p>
+    <section id="userProfile" class="container">
+        <p>recruiter profile</p>
         <div>
             <nav class="nav">
                 <div class="container">
                     <ul class="nav nav-tabs">
-                        <li  class="nav-item"><a id="profile_option" class="nav-link active profile_update_option" href="#">Profile</a></li>
-                        <li  class="nav-item"><a id="update_profile_option" class="nav-link profile_update_option" href="#">Update Profile</a></li>
+                        <li class="nav-item"><a id="profile_option" class="nav-link active profile_update_option"
+                                                href="#">Profile</a></li>
+                        <li class="nav-item"><a id="update_profile_option" class="nav-link profile_update_option"
+                                                href="#">Update Profile</a></li>
                     </ul>
                 </div>
             </nav>
@@ -102,57 +104,67 @@
             </div>
         </div>
 
-</section>
+    </section>
 
-<section class="container" id="jobPost" style="display: none">
-    <form action="/jobPost" method="post">
-        <div class="form-group left">
-            <label for="job-title">Job Title</label>
-            <input type="text" class="form-control" id="job-title" name="title">
-        </div>
-        <div class="form-group right">
-            <label for="job-type">Job Type</label>
-            <input type="text" class="form-control" id="job-type" name="type">
-        </div>
-        <div class="form-group left">
-            <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" name="location">
-        </div>
-        <div class="form-group right">
-            <label for="category">Category</label>
-            <input type="text" class="form-control" id="category" name="category">
-        </div>
-        <div class="form-group left">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" id="duration" name="duration">
-        </div>
-        <div class="form-group right">
-            <label for="rate">Hourly Rate</label>
-            <input type="text" class="form-control" id="rate" name="hourlyRate">
-        </div>
+    <section class="container" id="jobPost" style="display: none">
+        <form action="/jobPost" method="post">
+            <div class="form-group left">
+                <label for="job-title">Job Title</label>
+                <input type="text" class="form-control" id="job-title" name="title">
+            </div>
+            <div class="form-group right">
+                <label for="job-type">Job Type</label>
+                <input type="text" class="form-control" id="job-type" name="type">
+            </div>
+            <div class="form-group left">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location">
+            </div>
+            <div class="form-group right">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" id="category" name="category">
+            </div>
+            <div class="form-group left">
+                <label for="duration">Duration</label>
+                <input type="text" class="form-control" id="duration" name="duration">
+            </div>
+            <div class="form-group right">
+                <label for="rate">Hourly Rate</label>
+                <input type="text" class="form-control" id="rate" name="hourlyRate">
+            </div>
 
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" rows="10" id="description" name="description"> </textarea>
-        </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" rows="10" id="description" name="description"> </textarea>
+            </div>
 
-        <input type="hidden" name="recruiter_id" value="${recruiterProfile.id}">
+            <input type="hidden" name="recruiter_id" value="${recruiterProfile.id}">
 
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-</section>
-<section class="container" id="jobList" style="display: none">
-    <p>Jobs Posted</p>
-        <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </section>
+    <section class="container" id="jobList" style="display: none">
+        <p>Jobs Posted</p>
         <div class="list-group" style="width: 100%;">
-            <a class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
-               data-target="#job_${postedJob.id}" style="color: #fff;">
-                ${postedJob.title} - ${postedJob.jobStatus}
-            </a>
-            <span id="job_${postedJob.id}" class="collapse">
+            <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
+                <div class="mgr">
+                    <div class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
+                         data-target="#job_${postedJob.id}" style="color: #fff;">
+                            ${postedJob.title} - ${postedJob.jobStatus}
+
+                    </div>
+                    <span id="job_${postedJob.id}" class="raw collapse">
             <a class="list-group-item list-group-item-action">
                 <p>${postedJob.description}</p>
+                <c:if test="${postedJob.jobStatus=='ONGOING'}">
+                            <form action="/recruiter/updateStatus" method="post">
+                                <input type="hidden" name="job_id" value="${postedJob.id}"/>
+
+                                <span class="statusBtn"><input class="btn btn-outline-primary float-right" type="submit" value="Completed"/></span>
+                            </form>
+                </c:if>
             </a>
+                <c:if test="${empty postedJob.approvedApplicant}">
                 <ul>
                 <li class="applicant">Applicants :</li>
                 <form action="/recruiter/approvedJobs" method="post">
@@ -161,14 +173,17 @@
                     <input type="hidden" name="applicantId" value="${app.id}"/>
 
 
-                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary " type="submit" value="Approve"/> </li>
+                    <a href="#"><li class="list-group">${app.firstName}</a> <input class="btn btn-outline-primary "
+                                                                                    type="submit"
+                                                                                    value="Approve"/> </li>
 
                 </c:forEach>
                     </form>
 
                     </ul>
+                </c:if>
                     <c:choose>
-                    <c:when test="${postedJob.jobStatus =='COMPLETED'}">
+                        <c:when test="${postedJob.jobStatus =='COMPLETED'}">
             <a class="list-group-item list-group-item-action">
                     <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
                                     <input type="hidden" name="job_id" value="${postedJob.id}"/>
@@ -179,34 +194,13 @@
                                     <input class="btn btn-outline-primary float-right" type="submit" value="Post"/>
                             </form>
             </a>
-                    </c:when>
+                        </c:when>
                     </c:choose>
         </span>
-    <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
-        <div class="jumbotron">
-            <div class="list-group" style="width: 100%;">
-                <a class="list-group-item active" data-toggle="collapse"
-                   data-target="#job" style="color: #fff;">
-                        ${postedJob.title} - Status
-                </a>
-                <span id="job" class="collapse">
-                    <a class="list-group-item list-group-item-action">
-                        <p>${postedJob.description}</p>
-                    </a>
-                    <a class="list-group-item list-group-item-action">
-                            <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
-                                <input type="hidden" name="job_id" value="${postedJob.id}"/>
-                                <input type="number" name="rating" placeholder="Rate out of 10"/>
-                                <textarea class="form-control" name="comment" type="text" placeholder="Review..."></textarea>
-                                <br>
-                                <input class="btn btn-outline-primary float-right" type="submit" value="Post"/>
-                            </form>
-                    </a>
-                </span>
-            </div>
+                </div>
+            </c:forEach>
         </div>
-    </c:forEach>
-</section>
+    </section>
 </div>
 <script>
     $(function () {
@@ -239,6 +233,10 @@
             $(this).addClass('active');
             e.preventDefault();
         });
+        $('#${postedJob.title}').click(function (e) {
+            $("#job").removeClass('collapse');
+
+        })
     });
 </script>
 </body>
