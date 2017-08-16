@@ -1,7 +1,11 @@
 package com.ea.expresshire.controller;
 
+import com.ea.expresshire.model.Applicant;
+import com.ea.expresshire.model.Recruiter;
 import com.ea.expresshire.model.UserType;
+import com.ea.expresshire.services.applicant.ApplicantService;
 import com.ea.expresshire.services.email.EmailService;
+import com.ea.expresshire.services.recruiter.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -19,6 +23,12 @@ public class RootController {
 //    @Autowired
 //    EmailService emailService;
 
+    @Autowired
+    RecruiterService recruiterService;
+
+    @Autowired
+    ApplicantService applicantService;
+
     @RequestMapping("/")
     public String redirectRoot() {
         //emailService.sendEmail("Text Message", "mohammed.ahmed.ps@gmail.com", "Test Email");
@@ -35,9 +45,13 @@ public class RootController {
         if(request.isUserInRole(UserType.ROLE_ADMIN.name())){
             return "redirect:/admin";
         }else if(request.isUserInRole(UserType.ROLE_APPLICANT.name())){
-            System.out.println("afterlogin applicant");
+//            System.out.println("afterlogin applicant");
+//            Applicant applicant = applicantService.getApplicantByEmail(request.getUserPrincipal().getName());
+//            model.addAttribute("applicant", applicant);
             return "redirect:/applicant";
         }else{
+//            Recruiter recruiter = recruiterService.getRecruiterByEmail(request.getUserPrincipal().getName());
+//            model.addAttribute("recruiter", recruiter);
             return "redirect:/recruiter";
         }
     }
