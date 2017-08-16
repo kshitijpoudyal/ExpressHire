@@ -1,13 +1,16 @@
 package com.ea.expresshire.services.applicant;
 
 
+
 import com.ea.expresshire.dao.ApplicantRepository;
 import com.ea.expresshire.model.Applicant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -30,28 +33,26 @@ public class ApplicantServiceImpl implements ApplicantService{
     }
 
     @Override
-    public void updateApplicant(Applicant applicant) {
-        Applicant currentApplicant = new Applicant();//this is just temporary.
+    public void updateApplicant(Applicant applicant, Principal principal) {
+        Applicant currentApplicant = applicantRepository.findByEmail(principal.getName());//this is just temporary.
                 /*
                 TODO: I should have a method called getCurrentUser, then I can get the
                 current applicant using the userId of the current user. So, I should have another method
                 called getCurrentApplicant which will call getCurrentUser.
 
                  */
-        //TODO: may be I have to check if they are empty or not. I have to see the values using debugger.
-        if(applicant.getFirstName() != null) {
-            currentApplicant.setFirstName(applicant.getFirstName());
+
+        if(!StringUtils.isEmpty(applicant.getFirstName().trim())) {
+            currentApplicant.setFirstName(applicant.getFirstName().trim());
         }
-        if(applicant.getLastName() != null) {
-            currentApplicant.setLastName(applicant.getLastName());
+        if(!StringUtils.isEmpty(applicant.getLastName().trim())) {
+            currentApplicant.setFirstName(applicant.getLastName().trim());
         }
-        if(applicant.getEmail() != null) {
-            currentApplicant.setEmail(applicant.getEmail());
-        }
-        if(applicant.getPassword() != null) {
+        if(!StringUtils.isEmpty(applicant.getPassword())) {
             currentApplicant.setPassword(applicant.getPassword());
         }
 
+        //TODO: update email.
         applicantRepository.save(currentApplicant);
     }
 
@@ -61,13 +62,13 @@ public class ApplicantServiceImpl implements ApplicantService{
     }
 
     @Override
+    public List<Applicant> findApplicants() {
+        return applicantRepository.findAll();
+    }
+
+    @Override
     public void deleteApplicant(Applicant applicant) {
         applicantRepository.delete(applicant);
     }
-
-   /* @Override
-    public List<Applicant> getAllApplicant(){
-        applicantRepository.findAll();
-    }*/
 
 }

@@ -4,22 +4,22 @@ import com.ea.expresshire.model.Applicant;
 import com.ea.expresshire.model.Recruiter;
 
 import java.util.List;
+import java.security.Principal;
 
 public interface ApplicantService {
 
-    public void addNewApplicant(Applicant applicant);
+    void addNewApplicant(Applicant applicant);
 
-    public Applicant findApplicantById(long id);
+    Applicant findApplicantById(long id);
 
-    public void updateApplicant(Applicant applicant);
+    void updateApplicant(Applicant applicant, Principal principal);
 
     Applicant getApplicantByEmail(String email);
 
     void deleteApplicant(Applicant applicant);
 
-/*
-    List<Applicant> getAllApplicant();
-*/
+    List<Applicant> findApplicants();
+
 }
 
 

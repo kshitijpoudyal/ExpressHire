@@ -5,6 +5,7 @@ import com.ea.expresshire.model.Job;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
  * Created by kcp on 8/10/17.
  */
 @Service
-public class JobService {
+public class JobService{
 
     @Autowired
     private JobRepository jobRepository;
@@ -34,19 +35,7 @@ public class JobService {
         return jobRepository.getOne(id);
     }
 
-    public List<Job> getValidJobs(){
-
-        List<Job> listOfJobs=jobRepository.findAll();
-        List<Job> validJobs=new ArrayList<>();
-
-        for(Job e:listOfJobs){
-            System.out.println(new GregorianCalendar().getTimeInMillis());
-            if((int)new Date().getTime()<((int)e.getDateTime().getTime()+e.getDuration())){
-                validJobs.add(e);
-
-            }
-        }
-
-        return validJobs;
+    public Job searchJob(String key){
+        return jobRepository.findJobByTitle(key);
     }
 }

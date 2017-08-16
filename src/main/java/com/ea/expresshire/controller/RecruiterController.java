@@ -29,17 +29,23 @@ public class RecruiterController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     //TODO: put @Valid.
-    public void signUpPost(@RequestBody Recruiter recruiter) {
+    public String signUpPost(@RequestBody Recruiter recruiter) {
         //TODO: in the service layer, I have to check if the user is already exist or not.
         recruiter.setUserType(UserType.ROLE_RECRUITER);
         recruiterService.addNewRecruiter(recruiter);
+        return "redirect:/recruiter";
     }
-    @PreAuthorize("hasRole('ROLE_RECRUITER')")
-    @RequestMapping(value = "/{recruiterId}", method = RequestMethod.PUT)
-    //TODO: put @Valid.
-    public void updateRecruiter(@PathVariable ("recruiterId") long recruiterId, Model model) {
 
+
+    @PreAuthorize("hasRole('ROLE_RECRUITER')")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    //TODO: put @Valid.
+    public void updateRecruiter(@RequestBody Recruiter recruiter, Principal principal) {
+
+        recruiterService.updateRecruiter(recruiter, principal);
     }
+
+
     @PreAuthorize("hasRole('ROLE_RECRUITER')")
     @RequestMapping("")
     public String profile(Model model, Principal principal){

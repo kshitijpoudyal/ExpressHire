@@ -25,7 +25,8 @@ public class JobController {
     @Autowired
     private RecruiterService recruiterService;
 
-
+    public JobController() {
+    }
 
     @Autowired
     public JobController(JobService jobService){
@@ -46,7 +47,7 @@ public class JobController {
         jobService.saveJob(job);
         return "redirect:/recruiter";
     }
-
+  
     @GetMapping("/jobs")
     public String getListOfJobs(Model model){
         model.addAttribute("jobs", jobService.getJobs());

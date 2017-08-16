@@ -18,6 +18,11 @@ public class Applicant extends User{
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Job> appliedJobs;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Job> approvedJobs;
+
+    private int averageRating;
+
     //TODO: Address. Now, no need for it.
 
 
@@ -47,5 +52,31 @@ public class Applicant extends User{
 
     public void deleteAppliedJob(Job job){
         appliedJobs.remove(job);
+    }
+  
+    public List<Job> getApprovedJobs() {
+        return approvedJobs;
+    }
+
+    public void setApprovedJobs(List<Job> approvedJobs) {
+        this.approvedJobs = approvedJobs;
+    }
+
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", appliedJobs=" + appliedJobs +
+                '}';
+
     }
 }

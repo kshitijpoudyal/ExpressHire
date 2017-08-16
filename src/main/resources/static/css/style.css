@@ -26,13 +26,13 @@
     position: relative;
     top: 32px;
 }
-.collapse li {
+.raw.collapse li {
     list-style-type: none;
     display: inline-block;
     color: #0275d8;
     margin-right: 10px;
 }
-.list-group {
+.raw.list-group {
     margin-bottom: 30px;
 }
 .applicant {
