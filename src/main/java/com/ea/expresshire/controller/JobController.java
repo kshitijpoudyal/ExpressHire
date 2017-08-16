@@ -6,6 +6,7 @@ import com.ea.expresshire.model.Recruiter;
 import com.ea.expresshire.services.job.JobService;
 import com.ea.expresshire.services.recruiter.RecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +50,8 @@ public class JobController {
         jobService.saveJob(job);
         return "redirect:/recruiter";
     }
-  
+
+    @Scheduled(cron = "${my.cron.expression}")
     @GetMapping("/jobs")
     public String getListOfJobs(Model model){
         model.addAttribute("jobs", jobService.getJobs());
