@@ -32,11 +32,22 @@
     color: #0275d8;
     margin-right: 10px;
 }
-.raw.list-group {
+.mgr {
     margin-bottom: 30px;
 }
 .applicant {
     color: #8ad178 !important;
 }
+/*.statusBtn .btn {
+    background-color: #fff !important;
+    position: absolute;
+    right: 18px;
+    top: -1px;
+    margin-top: 5px;
+}
+.statusBtn .btn:hover {
+    color: #000;
+    cursor: pointer;
+}*/
 
 

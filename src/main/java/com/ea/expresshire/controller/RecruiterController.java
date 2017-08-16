@@ -1,6 +1,7 @@
 package com.ea.expresshire.controller;
 
 import com.ea.expresshire.model.Applicant;
+import com.ea.expresshire.model.JobStatus;
 import com.ea.expresshire.model.Recruiter;
 import com.ea.expresshire.model.UserType;
 import com.ea.expresshire.services.applicant.ApplicantService;
@@ -64,14 +65,27 @@ public class RecruiterController {
         jobService.getJob(job_id).setApprovedApplicant(applicantService.findApplicantById(applicantId));
         System.out.println(jobService.getJob(job_id).getApprovedApplicant().getFirstName());
         //System.out.println(jobService.getJob(job_id).getApplicants().remove(applicantService.findApplicantById(applicantId)));
+/*
         jobService.getJob(job_id).getApplicants().remove(applicantService.findApplicantById(applicantId));
         applicantService.findApplicantById(applicantId).deleteAppliedJob(jobService.getJob(job_id));
         jobService.getJob(job_id).removeApplicants(applicantService.findApplicantById(applicantId));
         applicantService.findApplicantById(applicantId).getAppliedJobs().remove(jobService.getJob(job_id));
         jobService.getJob(job_id).getApplicants().remove(applicantService.findApplicantById(applicantId));
+*/
+        jobService.getJob(job_id).setJobStatus(JobStatus.ONGOING);
+        jobService.saveJob(jobService.getJob(job_id));
 
         //applicantService.deleteApplicantById(applicantId);
         return "redirect:/recruiter";
 
+    }
+    @PreAuthorize("hasRole('ROLE_RECRUITER')")
+    @PostMapping("/updateStatus")
+    public String updateJob(long job_id){
+        System.out.println(job_id);
+        jobService.getJob(job_id).setJobStatus(JobStatus.COMPLETED);
+        jobService.saveJob(jobService.getJob(job_id));
+        System.out.println(jobService.getJob(job_id).getJobStatus());
+        return "redirect:/recruiter";
     }
 }

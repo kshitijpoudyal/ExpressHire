@@ -68,6 +68,8 @@ public class ApplicantController {
     public String applyJob(Principal principal,long job_id){
         Applicant applicant = applicantService.getApplicantByEmail(principal.getName());
         applicant.getAppliedJobs().add(jobService.getJob(job_id));
+        System.out.println(jobService.getJob(job_id).getApplicants());
+        System.out.println(jobService.getJob(job_id).getApprovedApplicant());
         applicantService.addNewApplicant(applicant);
         return "redirect:/applicant";
     }
