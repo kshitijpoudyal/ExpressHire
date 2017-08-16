@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -38,18 +39,21 @@ public class RecruiterController {
 
 
     @PreAuthorize("hasRole('ROLE_RECRUITER')")
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     //TODO: put @Valid.
-    public void updateRecruiter(@RequestBody Recruiter recruiter, Principal principal) {
+    public String updateRecruiter(@ModelAttribute("recruiterProfile") Recruiter recruiter, BindingResult result, Principal principal) {
 
         recruiterService.updateRecruiter(recruiter, principal);
+        return "redirect:/recruiter";
     }
 
 
     @PreAuthorize("hasRole('ROLE_RECRUITER')")
     @RequestMapping("")
     public String profile(Model model, Principal principal){
-        model.addAttribute("recruiterProfile", recruiterService.getRecruiterByEmail(principal.getName()));
+        Recruiter recruiter = recruiterService.getRecruiterByEmail(principal.getName());
+        recruiter.setPassword("");
+        model.addAttribute("recruiterProfile", recruiter);
         return "recruiter";
     }
 
