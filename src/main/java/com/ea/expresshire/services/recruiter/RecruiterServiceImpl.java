@@ -38,11 +38,11 @@ public class RecruiterServiceImpl implements RecruiterService {
     public void updateRecruiter(Recruiter recruiter, Principal principal) {
         Recruiter currentRecruiter = recruiterRepository.findByEmail(principal.getName());
 
-        if(!StringUtils.isEmpty(recruiter.getCompanyName().trim())) {
+        if(recruiter.getCompanyName() != null && !recruiter.getCompanyName().trim().equals("")) {
             currentRecruiter.setCompanyName(recruiter.getCompanyName().trim());
         }
-        if(!StringUtils.isEmpty(recruiter.getPassword())) {
-            currentRecruiter.setCompanyName(recruiter.getPassword());
+        if(recruiter.getPassword() != null && !recruiter.getPassword().trim().equals("")) {
+            currentRecruiter.setPassword(recruiter.getPassword());
         }
         recruiterRepository.save(currentRecruiter);
     }
