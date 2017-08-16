@@ -71,5 +71,4 @@ public class ApplicantServiceImpl implements ApplicantService{
         applicantRepository.delete(applicant);
     }
 
-
 }

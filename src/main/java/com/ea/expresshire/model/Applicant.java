@@ -50,6 +50,10 @@ public class Applicant extends User{
         this.appliedJobs = appliedJobs;
     }
 
+    public void deleteAppliedJob(Job job){
+        appliedJobs.remove(job);
+    }
+  
     public List<Job> getApprovedJobs() {
         return approvedJobs;
     }
@@ -73,5 +77,6 @@ public class Applicant extends User{
                 ", lastName='" + lastName + '\'' +
                 ", appliedJobs=" + appliedJobs +
                 '}';
+
     }
 }

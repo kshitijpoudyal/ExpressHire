@@ -2,11 +2,13 @@ package com.ea.expresshire.services.job;
 
 import com.ea.expresshire.dao.JobRepository;
 import com.ea.expresshire.model.Job;
+import com.sun.org.apache.xpath.internal.SourceTree;
+import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by kcp on 8/10/17.

@@ -40,6 +40,7 @@
     </nav>
 
 </div>
+<div class="container">
 <section id="userProfile" class="container">
     <p>recruiter profile</p>
         <div>
@@ -142,6 +143,45 @@
 </section>
 <section class="container" id="jobList" style="display: none">
     <p>Jobs Posted</p>
+        <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
+        <div class="list-group" style="width: 100%;">
+            <a class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
+               data-target="#job_${postedJob.id}" style="color: #fff;">
+                ${postedJob.title} - ${postedJob.jobStatus}
+            </a>
+            <span id="job_${postedJob.id}" class="collapse">
+            <a class="list-group-item list-group-item-action">
+                <p>${postedJob.description}</p>
+            </a>
+                <ul>
+                <li class="applicant">Applicants :</li>
+                <form action="/recruiter/approvedJobs" method="post">
+                <c:forEach var="app" items="${postedJob.applicants}">
+                    <input type="hidden" name="job_id" value="${postedJob.id}"/>
+                    <input type="hidden" name="applicantId" value="${app.id}"/>
+
+
+                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary " type="submit" value="Approve"/> </li>
+
+                </c:forEach>
+                    </form>
+
+                    </ul>
+                    <c:choose>
+                    <c:when test="${postedJob.jobStatus =='COMPLETED'}">
+            <a class="list-group-item list-group-item-action">
+                    <form class="clearfix" style="width: 100%" action="/reviewRating" method="POST">
+                                    <input type="hidden" name="job_id" value="${postedJob.id}"/>
+                                    <input type="number" name="rating" placeholder="Rate out of 10"/>
+                                    <textarea class="form-control" name="comment" type="text"
+                                              placeholder="Review..."></textarea>
+                                    <br>
+                                    <input class="btn btn-outline-primary float-right" type="submit" value="Post"/>
+                            </form>
+            </a>
+                    </c:when>
+                    </c:choose>
+        </span>
     <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
         <div class="jumbotron">
             <div class="list-group" style="width: 100%;">
@@ -167,6 +207,7 @@
         </div>
     </c:forEach>
 </section>
+</div>
 <script>
     $(function () {
         $('#jobPostLink').click(function (e) {
@@ -198,7 +239,6 @@
             $(this).addClass('active');
             e.preventDefault();
         });
-
     });
 </script>
 </body>
