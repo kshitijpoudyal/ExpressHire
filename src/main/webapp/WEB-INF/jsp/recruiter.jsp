@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
@@ -75,31 +76,32 @@
 
             <div id="update_profile_nav">
                 <div class="container">
-                    <form>
+                    <form:form action="/recruiter/update" method="post" modelAttribute="recruiterProfile">
                         <div class="form-group row">
                             <label for="companyName" class="col-sm-2">Company Name: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="companyName"
-                                       value="${recruiterProfile.companyName}" placeholder="Company Name">
+                                <form:input path="companyName" type="text" class="form-control" id="companyName"
+                                       value="${recruiterProfile.companyName}" placeholder="Company Name"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="recruiter_email" class="col-sm-2">Email: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="recruiter_email"
-                                       value="${recruiterProfile.email}" placeholder="Email">
+                                <form:input path="email" type="email" name="email" class="form-control" id="recruiter_email"
+                                       value="${recruiterProfile.email}" placeholder="Email"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="recruiter_password" class="col-sm-2">Password: </label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="recruiter_password" placeholder="Password">
+                                <form:input path="password" type="password" name="password" class="form-control"
+                                            id="recruiter_password" placeholder="Password"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <button id="recruiter_update_btn" type="submit" class="btn btn-primary">Update Info</button>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>
@@ -152,9 +154,26 @@
                     ${postedJob.title} - ${postedJob.jobStatus}
             </a>
             <span id="job_${postedJob.id}" class="collapse">
+        <div class="list-group" style="width: 100%;">
+            <c:forEach var="postedJob" items="${recruiterProfile.postedJobs}">
+                <div class="mgr">
+                    <div class="list-group-item active" data-toggle="collapse" id="title_${postedJob.id}"
+                         data-target="#job_${postedJob.id}" style="color: #fff;">
+                            ${postedJob.title} - ${postedJob.jobStatus}
+
+                    </div>
+                    <span id="job_${postedJob.id}" class="raw collapse">
             <a class="list-group-item list-group-item-action">
                 <p>${postedJob.description}</p>
+                <c:if test="${postedJob.jobStatus=='ONGOING'}">
+                            <form action="/recruiter/updateStatus" method="post">
+                                <input type="hidden" name="job_id" value="${postedJob.id}"/>
+
+                                <span class="statusBtn"><input class="btn btn-outline-primary float-right" type="submit" value="Completed"/></span>
+                            </form>
+                </c:if>
             </a>
+                <c:if test="${empty postedJob.approvedApplicant}">
                 <ul>
                 <li class="applicant">Applicants :</li>
                 <form action="/recruiter/approvedJobs" method="post">
@@ -163,14 +182,14 @@
                     <input type="hidden" name="applicantId" value="${app.id}"/>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary "
-                                                                                    type="submit"
-                                                                                    value="Approve"/> </li>
+                    <a href="#"><li class="list-group">${app.firstName}></a> <input class="btn btn-outline-primary " type="submit" value="Approve"/>
+                  </li>
 
                 </c:forEach>
                     </form>
 
                     </ul>
+                </c:if>
                     <c:choose>
                         <c:when test="${postedJob.jobStatus =='COMPLETED'}">
             <a class="list-group-item list-group-item-action">
@@ -187,10 +206,11 @@
                         </c:when>
                     </c:choose>
         </span>
+                </div>
             </c:forEach>
         </div>
     </section>
-</div>
+        </div>
 <script>
     $(function () {
         $('#jobPostLink').click(function (e) {
@@ -222,6 +242,10 @@
             $(this).addClass('active');
             e.preventDefault();
         });
+        $('#${postedJob.title}').click(function (e) {
+            $("#job").removeClass('collapse');
+
+        })
     });
 </script>
 </body>

@@ -124,7 +124,7 @@ $(function() {
         $.ajax({
             type : "POST",
             contentType : "application/json",
-            url : "applicant/update",
+            url : "/applicant/update",
             data : JSON.stringify(applicant),
             dataType : 'json',
             timeout : 100000,

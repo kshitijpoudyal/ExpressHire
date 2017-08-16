@@ -33,6 +33,7 @@ public class ApplicantServiceImpl implements ApplicantService{
     }
 
     @Override
+    @Transactional
     public void updateApplicant(Applicant applicant, Principal principal) {
         Applicant currentApplicant = applicantRepository.findByEmail(principal.getName());//this is just temporary.
                 /*
@@ -42,13 +43,13 @@ public class ApplicantServiceImpl implements ApplicantService{
 
                  */
 
-        if(!StringUtils.isEmpty(applicant.getFirstName().trim())) {
+        if(applicant.getFirstName() != null && !applicant.getFirstName().trim().equals("")) {
             currentApplicant.setFirstName(applicant.getFirstName().trim());
         }
-        if(!StringUtils.isEmpty(applicant.getLastName().trim())) {
-            currentApplicant.setFirstName(applicant.getLastName().trim());
+        if(applicant.getLastName() != null && !applicant.getLastName().trim().equals("")) {
+            currentApplicant.setLastName(applicant.getLastName().trim());
         }
-        if(!StringUtils.isEmpty(applicant.getPassword())) {
+        if(applicant.getPassword() != null && !applicant.getPassword().trim().equals("")) {
             currentApplicant.setPassword(applicant.getPassword());
         }
 
@@ -58,7 +59,7 @@ public class ApplicantServiceImpl implements ApplicantService{
 
     @Override
     public Applicant getApplicantByEmail(String email) {
-        return applicantRepository.findByEmail(email);
+        return  applicantRepository.findByEmail(email);
     }
 
     @Override

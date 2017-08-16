@@ -24,6 +24,8 @@ public class ApplicantController {
     private JobService jobService;
     @Autowired
     private ApplicantService applicantService;
+
+
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     //TODO: put @Valid.
     public String signUpPost(@RequestBody Applicant applicant) {
@@ -39,18 +41,23 @@ public class ApplicantController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     //TODO: put @Valid.
     //TODO: receive a principal object, then get the email from there.
-    public void updateApplicant(@RequestBody Applicant applicant, Principal principal) {
+    public String updateApplicant(@ModelAttribute("applicantProfile") Applicant applicant, BindingResult result, Principal principal) {
         //TODO: I have to receive the id of that applicant. ==> no need, I can get it from current user(session).
         //if the password is empty, I should not update it.
 
         applicantService.updateApplicant(applicant, principal);
+
+        return "redirect:/applicant";
 
     }
 
     @PreAuthorize("hasRole('ROLE_APPLICANT')")
     @RequestMapping("")
     public String profile(Model model, Principal principal){
-        model.addAttribute("applicantProfile", applicantService.getApplicantByEmail(principal.getName()));
+
+        Applicant applicant = applicantService.getApplicantByEmail(principal.getName());
+        applicant.setPassword("");
+        model.addAttribute("applicantProfile", applicant);
 
         model.addAttribute("jobs", jobService.getJobs());
         return "applicant";
@@ -61,6 +68,8 @@ public class ApplicantController {
     public String applyJob(Principal principal,long job_id){
         Applicant applicant = applicantService.getApplicantByEmail(principal.getName());
         applicant.getAppliedJobs().add(jobService.getJob(job_id));
+        System.out.println(jobService.getJob(job_id).getApplicants());
+        System.out.println(jobService.getJob(job_id).getApprovedApplicant());
         applicantService.addNewApplicant(applicant);
         return "redirect:/applicant";
     }
