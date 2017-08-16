@@ -36,7 +36,7 @@ public class ApplicantController {
 
 
     @PreAuthorize("hasRole('ROLE_APPLICANT')")
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     //TODO: put @Valid.
     //TODO: receive a principal object, then get the email from there.
     public void updateApplicant(@RequestBody Applicant applicant, Principal principal) {

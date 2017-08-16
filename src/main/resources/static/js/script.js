@@ -27,8 +27,8 @@ $(function() {
         }
     });
 
-    $("#applicant_profile_nav").show();
-    $("#update_applicant_profile_nav").hide();
+    $("#profile_nav").show();
+    $("#update_profile_nav").hide();
 
     $(".profile_update_option").click(function() {
         // remove classes from all
@@ -37,12 +37,12 @@ $(function() {
         $(this).addClass("active");
 
         if(this.id === "profile_option") {
-            $("#applicant_profile_nav").show();
-            $("#update_applicant_profile_nav").hide();
+            $("#profile_nav").show();
+            $("#update_profile_nav").hide();
         }
         else {
-            $("#applicant_profile_nav").hide();
-            $("#update_applicant_profile_nav").show();
+            $("#profile_nav").hide();
+            $("#update_profile_nav").show();
         }
     });
 
@@ -122,7 +122,7 @@ $(function() {
         }
 
         $.ajax({
-            type : "PUT",
+            type : "POST",
             contentType : "application/json",
             url : "applicant/update",
             data : JSON.stringify(applicant),
@@ -151,7 +151,7 @@ $(function() {
         }
 
         $.ajax({
-            type : "PUT",
+            type : "POST",
             contentType : "application/json",
             url : "recruiter/update",
             data : JSON.stringify(recruiter),

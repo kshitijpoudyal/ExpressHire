@@ -61,11 +61,11 @@
                     <div class="col-10">
                         <div class="row">
                             <p class="col-sm-2">Company Name: </p>
-                            <p class="col-sm-10">${recruiter.companyName}</p>
+                            <p class="col-sm-10">${recruiterProfile.companyName}</p>
                         </div>
                         <div class="row">
                             <p class="col-sm-2">Email</p>
-                            <p class="col-sm-10">${recruiter.email}</p>
+                            <p class="col-sm-10">${recruiterProfile.email}</p>
                         </div>
                     </div>
                 </div>
@@ -78,14 +78,14 @@
                             <label for="companyName" class="col-sm-2">Company Name: </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="companyName"
-                                       value="${recruiter.companyName}" placeholder="Company Name">
+                                       value="${recruiterProfile.companyName}" placeholder="Company Name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="recruiter_email" class="col-sm-2">Email: </label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="recruiter_email"
-                                       value="${recruiter.email}" placeholder="Email">
+                                       value="${recruiterProfile.email}" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group row">
